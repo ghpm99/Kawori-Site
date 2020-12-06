@@ -12,6 +12,7 @@ function About(){
         <div>            
             <Head title='Kawori bot' /> 
             <Menu  ativo={2}/>
+            <Page />
         </div>
     )
 }
@@ -20,8 +21,6 @@ export default About;
 
 function Page(){
     return (
-        <Title>
-            new
-        </Title>
+        <Title>new</Title>
     )
 }
