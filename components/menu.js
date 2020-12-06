@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const MenuNav = styled.div`
     overflow: hidden;
@@ -22,17 +23,26 @@ const MenuNav = styled.div`
     }
 `;
 
-class Menu extends React.Component{
-    render(){
-      return(
-      <MenuNav >
-          <a className='active'>Home</a>
-          <a href="#news">News</a>
-          <a href="#contact">Contact</a>
-          <a href="#about">About</a>
-      </MenuNav>);
-      
-    }
+
+function Menu(props){
+    
+    return(
+        <MenuNav >
+            <Link href="/">
+                <a className={props.ativo === 1 ? 'active' : null}>Inicio</a>
+            </Link>
+            <Link href="/new">
+                <a className={props.ativo === 2 ? 'active' : null}>Novidades</a>
+            </Link>
+            <Link href="/contact">
+                <a className={props.ativo === 3 ? 'active' : null}>Contato</a>
+            </Link>
+            <Link href="/about">
+                <a className={props.ativo === 4 ? 'active' : null}>Sobre</a>
+            </Link>
+            
+        </MenuNav>);
 }
+
 
 export default Menu;

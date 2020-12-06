@@ -7,22 +7,22 @@ font-size: 30px;
 color:black;
 `
 
-function Home(){
+function About(){
     return (
         <div>            
             <Head title='Kawori bot' /> 
-            <Menu  ativo={1}/>
+            <Menu  ativo={3}/>
             <Page />
         </div>
     )
 }
 
-export default Home;
+export default About;
 
 function Page(){
     return (
         <Title>
-            home
+            contact
         </Title>
     )
 }
