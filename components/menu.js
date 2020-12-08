@@ -4,10 +4,12 @@ import Link from 'next/link';
 
 const MenuNav = styled.div`
     overflow: hidden;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.0);
+      
+    width: auto;
     a{
-    float: left;
-    color: #f2f2f2;
+    float: right;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -17,8 +19,9 @@ const MenuNav = styled.div`
         color: black;
       }
     &.active {
-        background-color: #4CAF50;
-        color: white;
+        background-color: #FFC0CB;
+
+        color: black;
       }      
     }
 `;
