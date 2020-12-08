@@ -8,6 +8,12 @@ color:black;
 text-align: center;
 `;
 
+const Texto = styled.h3`
+text-align:left
+`;
+
+
+
 function Home(){
     return (
         <div>
@@ -22,8 +28,13 @@ export default Home;
 
 function Page(){
     return (
+        <>
         <Title>
             Kawori
         </Title>
+        <Texto>
+            Kawori é um bot para discord, projetado e desenvolvido para auxiliar as guilds do Black Desert Online a gerenciar seus membros. 
+        </Texto>
+        </>
     )
 }
