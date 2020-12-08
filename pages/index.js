@@ -9,7 +9,8 @@ text-align: center;
 `;
 
 const Texto = styled.h3`
-text-align:left
+text-align:left;
+color:white;
 `;
 
 const GlobalStyle =  createGlobalStyle`
