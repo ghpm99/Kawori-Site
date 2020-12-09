@@ -5,10 +5,10 @@ import {createGlobalStyle} from 'styled-components';
 const GlobalStyle =  createGlobalStyle`
     body{
         border: 0px solid #000;
-        background-image: url('https://i.imgur.com/uHVPttO.png');
-        background-color: #ffbdba;
+        background-image: url('https://i.imgur.com/9DY0rTU.png');
+        background-color: #87CEFA;
         background-repeat: no-repeat;
-        background-position: right -100%;
+        background-position: center -20%;
         background-size: auto; 
         width: auto;
         height: 100%;
