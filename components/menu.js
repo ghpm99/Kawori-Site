@@ -19,7 +19,7 @@ const MenuNav = styled.div`
         color: black;
       }
     &.active {
-        background-color: #E59795;
+        background-color: #6495ED;
 
         color: #E1DDDD;
       }      
@@ -31,7 +31,12 @@ function Menu(props){
     
     return(
         <MenuNav >
-            
+            <Link href="https://discordapp.com/api/oauth2/authorize?client_id=622218589243572224&permissions=8&scope=bot">
+                <a>Incorporar Bot!</a>
+            </Link>
+            <Link href="https://discord.gg/5rwtq5V">
+                <a>Comunidade</a>
+            </Link>
             <Link href="/about">
                 <a className={props.ativo === 4 ? 'active' : null}>Sobre</a>
             </Link>

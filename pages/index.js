@@ -14,6 +14,10 @@ text-align:center;
 color: rgba(255,255,255,0.9);
 `;
 
+const Cards = styled.div`
+
+`;
+
 function Home(){
     return (
         <div>            
@@ -28,8 +32,11 @@ export default Home;
 
 function Page(){
     return (
-        <>
-        <Card imagem='https://i.imgur.com/uHVPttO.png' texto='Kawori é um bot para discord, projetado e desenvolvido para auxiliar as guilds do Black Desert Online a gerenciar seus membros.'/>        
-        </>
+        <Cards>
+            <Card imagem='https://i.imgur.com/uHVPttO.png' 
+            texto='Ola! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.' alinhamento='right'/>
+            <Card imagem='https://i.imgur.com/soEVRkA.png'
+            texto='Sistema de Auto-Roles simples e facil de utilizar.' alinhamento='left'/>
+        </Cards>
     )
 }
