@@ -5,11 +5,11 @@ import {createGlobalStyle} from 'styled-components';
 const GlobalStyle =  createGlobalStyle`
     body{
         border: 0px solid #000;
-        background-image: url('https://i.imgur.com/6NHnrDS.png');
+        background-image: url('https://i.imgur.com/uHVPttO.png');
         background-color: #ffbdba;
         background-repeat: no-repeat;
-        background-position: left 15%;
-        background-size: cover; 
+        background-position: right -100%;
+        background-size: auto; 
         width: auto;
         height: auto;
     }
@@ -17,7 +17,7 @@ const GlobalStyle =  createGlobalStyle`
 
 function Head({title}){
     return(
-        <>
+        <>        
         <NextHead>            
             <title>
                 {title}
