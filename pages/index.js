@@ -1,35 +1,21 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
-import styled ,{createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 
 const Title = styled.h1`
 font-size: 40px;
-color:black;
+color:white;
 text-align: center;
 `;
 
 const Texto = styled.h3`
-text-align:left;
-color:white;
-`;
-
-const GlobalStyle =  createGlobalStyle`
-    body{
-        border: 0px solid #000;
-        background-image: url('https://i.imgur.com/HntFxNp.jpg');
-        background-color: #cccccc;
-        background-repeat: no-repeat;
-        background-position: lefth;
-        background-size: cover; 
-        width: auto;
-        height: 100%;
-    }
+text-align:center;
+color: rgba(255,255,255,0.9);
 `;
 
 function Home(){
     return (
-        <div>
-            <GlobalStyle />
+        <div>            
             <Head title='Kawori bot' />
             <Menu ativo={1}/>
             <Page />
