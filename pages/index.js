@@ -1,6 +1,7 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
+import Card from '../components/card';
 
 const Title = styled.h1`
 font-size: 40px;
@@ -28,14 +29,7 @@ export default Home;
 function Page(){
     return (
         <>
-        <Title>
-            Kawori
-        </Title>
-        <Texto>
-            Kawori é um bot para discord, projetado e desenvolvido para auxiliar as guilds do Black Desert Online a gerenciar seus membros. 
-            \nAs principais funções são:\nGerenciamento de gear
-            Agendamento de eventos.
-        </Texto>
+        <Card imagem='https://i.imgur.com/uHVPttO.png' texto='Kawori é um bot para discord, projetado e desenvolvido para auxiliar as guilds do Black Desert Online a gerenciar seus membros.'/>        
         </>
     )
 }

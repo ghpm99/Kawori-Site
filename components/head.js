@@ -8,7 +8,7 @@ const GlobalStyle =  createGlobalStyle`
         background-image: url('https://i.imgur.com/9DY0rTU.png');
         background-color: #87CEFA;
         background-repeat: no-repeat;
-        background-position: center -20%;
+        background-position: center bottom;
         background-size: auto; 
         width: auto;
         height: 100%;
