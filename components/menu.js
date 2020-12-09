@@ -20,7 +20,6 @@ const MenuNav = styled.div`
       }
     &.active {
         background-color: #6495ED;
-
         color: #E1DDDD;
       }      
     }
