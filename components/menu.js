@@ -15,8 +15,8 @@ const MenuNav = styled.div`
     text-decoration: none;
     font-size: 17px;
     &:hover {
-        background-color: #ddd;
-        color: black;
+        background-color: #4682B4;
+        color: #000080;
       }
     &.active {
         background-color: #6495ED;

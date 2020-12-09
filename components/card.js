@@ -3,35 +3,43 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
 background-color: rgba(55,55,55,0.9);
-display: flex;
-justify-content: center;
-text-align:center;
-margin-bottom:130px;
+margin-top:30px;
+margin-bottom:100px;
 margin-right:auto;
 margin-left:auto;
 max-width:1500px;
+
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: flex-end;
+justify-content: flex-end;
+
+
 `;
 
 const Image = styled.img`
-    float:${(props) => {
+    margin-left:auto;
+    order:${(props) => {
         return props.align;
-    }};
-    
+    }};    
 `;
 
 const Texto = styled.div`
-    font-size: 32px;
-    text-align:center;
-    color:white;
+    font-size: 48px;     
+    color:white;   
+    width:500px;    
 `;
+
 
 function Card(props){
     return(
-        <CardContainer>                        
-            <Texto >
-            <Image align={props.alinhamento} src={props.imagem}/>
-            {props.texto}            
-            </Texto>               
+        <CardContainer>   
+                <Image align={props.alinhamento} src={props.imagem}/>
+                <Texto >                
+                    {props.texto}         
+                </Texto>     
         </CardContainer>
     );
 }

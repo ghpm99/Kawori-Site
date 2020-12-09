@@ -15,6 +15,14 @@ color: rgba(255,255,255,0.9);
 `;
 
 const Cards = styled.div`
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+justify-content: center;
+text-align:center;
+flex-direction:column;
 `;
 
 function Home(){
@@ -33,9 +41,9 @@ function Page(){
     return (
         <Cards>
             <Card imagem='https://i.imgur.com/uHVPttO.png' 
-            texto='Ola! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.' alinhamento='right'/>
+            texto='Ola! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.' alinhamento='1'/>
             <Card imagem='https://i.imgur.com/soEVRkA.png'
-            texto='Sistema de Auto-Roles simples e facil de utilizar.' alinhamento='left'/>
+            texto='Sistema de Auto-Roles simples e facil de utilizar.' alinhamento='0'/>
         </Cards>
     )
 }
