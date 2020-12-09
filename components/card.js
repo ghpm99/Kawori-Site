@@ -15,8 +15,7 @@ max-width:1500px;
 const Image = styled.img`
     float:${(props) => {
         return props.align;
-    }
-    };
+    }};
     
 `;
 
