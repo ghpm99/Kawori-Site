@@ -8,15 +8,12 @@ margin-bottom:100px;
 margin-right:auto;
 margin-left:auto;
 max-width:1500px;
-
 display: -webkit-flex;
 display: flex;
 -webkit-align-items: center;
 align-items: center;
 -webkit-justify-content: flex-end;
 justify-content: flex-end;
-
-
 `;
 
 const Image = styled.img`
