@@ -11,7 +11,7 @@ const GlobalStyle =  createGlobalStyle`
         background-position: right -100%;
         background-size: auto; 
         width: auto;
-        height: auto;
+        height: 100%;
     }
 `;
 
