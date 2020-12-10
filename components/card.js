@@ -26,7 +26,8 @@ const Image = styled.img`
 const Texto = styled.div`
     font-size: 48px;     
     color:white;   
-    width:500px;    
+    width:500px;
+    margin:50px;
 `;
 
 

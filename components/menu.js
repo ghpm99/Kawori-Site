@@ -37,13 +37,16 @@ function Menu(props){
                 <a>Comunidade</a>
             </Link>
             <Link href="/about">
-                <a className={props.ativo === 4 ? 'active' : null}>Sobre</a>
+                <a className={props.ativo === 5 ? 'active' : null}>Sobre</a>
             </Link>
-            <Link href="/contact">
-                <a className={props.ativo === 3 ? 'active' : null}>Contato</a>
+            <Link href="/status">
+                <a className={props.ativo === 4 ? 'active' : null}>Status</a>
             </Link>
             <Link href="/new">
-                <a className={props.ativo === 2 ? 'active' : null}>Novidades</a>
+                <a className={props.ativo === 3 ? 'active' : null}>Novidades</a>
+            </Link>
+            <Link href="/commands">
+                <a className={props.ativo === 2 ? 'active' : null}>Comandos</a>
             </Link>
             <Link href="/">
                 <a className={props.ativo === 1 ? 'active' : null}>Inicio</a>

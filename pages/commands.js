@@ -7,20 +7,22 @@ font-size: 30px;
 color:black;
 `
 
-function New(){
+function Commands(){
     return (
         <div>            
             <Head title='Kawori bot' /> 
-            <Menu ativo={3} />
+            <Menu  ativo={2}/>
             <Page />
         </div>
     )
 }
 
-export default New;
+export default Commands;
 
 function Page(){
     return (
-        <Title>new</Title>
+        <Title>
+            contact
+        </Title>
     )
 }

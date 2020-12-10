@@ -43,7 +43,11 @@ function Page(){
             <Card imagem='https://i.imgur.com/uHVPttO.png' 
             texto='Ola! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.' alinhamento='1'/>
             <Card imagem='https://i.imgur.com/soEVRkA.png'
-            texto='Sistema de Auto-Roles simples e facil de utilizar.' alinhamento='0'/>
+            texto='Possuo um sistema de Auto-Roles simples e facil de utilizar.' alinhamento='0'/>
+            <Card imagem='https://i.imgur.com/kGbSPrO.png'
+            texto='Caso você possua uma guild do Black Desert, eu posso te ajudar a guardar as informações dos membros dela.' alinhamento='1' />
+            <Card imagem='https://i.imgur.com/HrmGxA4.png'
+            texto='Também possuo varios comandos de interação e muito mais!' alinhamento='0' />
         </Cards>
     )
 }
