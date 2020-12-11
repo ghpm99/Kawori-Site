@@ -9,18 +9,16 @@ const MenuNav = styled.div`
     padding:2px;
     a{
     float: right;
-    color: white;
+    color: #A9A9A9;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    &:hover {
-        background-color: #4682B4;
-        color: #000080;
+    &:hover {        
+        color: #D3D3D3;
       }
-    &.active {
-        background-color: #6495ED;
-        color: #E1DDDD;
+    &.active {        
+        color: white;
       }      
     }
 `;

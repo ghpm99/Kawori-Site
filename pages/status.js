@@ -1,18 +1,45 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
+import React,{ useState , useEffect} from 'react';
 
 const urlStatus = "http://localhost:8080/status";
 
-const Title = styled.h3`
+const Title = styled.div`
 font-size: 30px;
-color:black;
+color:white;
+margin:20px;
+margin-left:50px;
+margin-right:50px;
 `
 
+const Center = styled.div`
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+justify-content: center;
+text-align:center;
+flex-direction:column;
+height:80vh;
+align-self:flex-start;
+`;
+
+const Numbers = styled.div`
+display: -webkit-flex;
+display: flex;
+-webkit-align-items: center;
+align-items: center;
+-webkit-justify-content: center;
+justify-content: center;
+text-align:center;
+flex-direction:row;
+`;
+
 function Status(){
-    console.log(getJSonStatus());
     return (
-        <div>            
+        <div>
             <Head title='Kawori bot' /> 
             <Menu  ativo={4}/>
             <Page />
@@ -23,20 +50,52 @@ function Status(){
 export default Status;
 
 function Page(){
-    return (
-        <Title>
-            Status
-        </Title>
-    )
-}
-
-function getJSonStatus(){
-    return fetch(urlStatus)
-    .then((response) => response.json())
-    .then((responseJson) => {        
-        return responseJson;
-    })
-    .catch((error) => {
-        console.error(error);
+   
+    const [data, setData] = useState({status: "Offline",
+        cmdReceived : 0,
+        guildCount : 0,
+        userCount : 0,
+    }); 
+   
+    useEffect(() => {
+       fetch(urlStatus)
+       .then((response) => response.json())
+       .then((jsonData) => {
+           setData(jsonData);
+       })
     });
+
+    return (
+        <Center>
+            <Title>
+                Status
+            </Title>
+            <Title>
+                {data.status}
+            </Title>
+            <Numbers>
+                <Title>
+                    Comandos recebidos
+                    <Title>
+                    {data.cmdReceived}
+                    </Title>
+                </Title>
+                
+                <Title>
+                    Grupos
+                    <Title>
+                    {data.guildCount}
+                    </Title>
+                </Title>
+                
+                <Title>
+                    Usuarios
+                    <Title>
+                    {data.userCount}
+                    </Title>
+                </Title>
+                
+            </Numbers>            
+        </Center>
+    )
 }

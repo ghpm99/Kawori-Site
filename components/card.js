@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-background-color: rgba(55,55,55,0.9);
+
 margin-top:30px;
 margin-bottom:100px;
 margin-right:auto;
@@ -20,7 +20,7 @@ const Image = styled.img`
     margin-left:auto;
     order:${(props) => {
         return props.align;
-    }};    
+    }};
 `;
 
 const Texto = styled.div`
