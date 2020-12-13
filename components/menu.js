@@ -33,16 +33,10 @@ function Menu(props){
             </Link>
             <Link href="https://discord.gg/5rwtq5V">
                 <a>Comunidade</a>
-            </Link>
-            <Link href="/about">
-                <a className={props.ativo === 5 ? 'active' : null}>Sobre</a>
-            </Link>
+            </Link>            
             <Link href="/status">
-                <a className={props.ativo === 4 ? 'active' : null}>Status</a>
-            </Link>
-            <Link href="/new">
-                <a className={props.ativo === 3 ? 'active' : null}>Novidades</a>
-            </Link>
+                <a className={props.ativo === 3 ? 'active' : null}>Status</a>
+            </Link>            
             <Link href="/commands">
                 <a className={props.ativo === 2 ? 'active' : null}>Comandos</a>
             </Link>

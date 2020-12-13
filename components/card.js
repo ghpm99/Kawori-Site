@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-
-margin-top:30px;
-margin-bottom:100px;
+margin-top:15px;
+margin-bottom:50px;
 margin-right:auto;
 margin-left:auto;
 max-width:1500px;

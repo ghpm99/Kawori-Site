@@ -3,7 +3,7 @@ import Menu from '../components/menu';
 import styled from 'styled-components';
 import React,{ useState , useEffect} from 'react';
 
-const urlStatus = "http://localhost:8080/status";
+const urlStatus = "http://201.51.64.103:25566/status";
 
 const Title = styled.div`
 font-size: 30px;
@@ -41,7 +41,7 @@ function Status(){
     return (
         <div>
             <Head title='Kawori bot' /> 
-            <Menu  ativo={4}/>
+            <Menu  ativo={3}/>
             <Page />
         </div>
     )
@@ -63,7 +63,7 @@ function Page(){
        .then((jsonData) => {
            setData(jsonData);
        })
-    });
+    },[]);
 
     return (
         <Center>

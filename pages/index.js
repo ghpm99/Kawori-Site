@@ -46,7 +46,7 @@ function Page(){
             texto='Possuo um sistema de Auto-Roles simples e facil de utilizar.' alinhamento='0'/>
             <Card imagem='https://i.imgur.com/kGbSPrO.png'
             texto='Caso você possua uma guild do Black Desert, eu posso te ajudar a guardar as informações dos membros dela.' alinhamento='1' />
-            <Card imagem='https://i.imgur.com/HrmGxA4.png'
+            <Card imagem='https://i.imgur.com/oKTN61P.png'
             texto='Também possuo varios comandos de interação e muito mais!' alinhamento='0' />
         </Cards>
     )

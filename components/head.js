@@ -5,7 +5,7 @@ import {createGlobalStyle} from 'styled-components';
 const GlobalStyle =  createGlobalStyle`
     body{
         border: 0px solid #000;        
-        background-color: #24252a;
+        background-color: #36393f;
         background-repeat: no-repeat;
         background-position: center bottom;
         background-attachment: fixed;

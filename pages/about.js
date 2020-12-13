@@ -11,7 +11,7 @@ function About(){
     return (
         <div>            
             <Head title='Kawori bot' /> 
-            <Menu  ativo={5}/>
+            <Menu  ativo={4}/>
             <Page />
         </div>
     )
