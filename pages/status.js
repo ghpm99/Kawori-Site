@@ -3,7 +3,7 @@ import Menu from '../components/menu';
 import styled from 'styled-components';
 import React,{ useState , useEffect} from 'react';
 
-const urlStatus = "http://201.51.64.103:25566/status";
+const urlStatus = "https://201.51.64.103:25566/status";
 
 const Title = styled.div`
 font-size: 30px;
