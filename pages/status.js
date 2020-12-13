@@ -1,7 +1,7 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
-import React,{ useState , useEffect} from 'react';
+import React from 'react';
 
 const urlStatus = "https://201.51.64.103:25566/status";
 
@@ -37,33 +37,35 @@ text-align:center;
 flex-direction:row;
 `;
 
-function Status(){
+function Status(props){
     return (
         <div>
             <Head title='Kawori bot' /> 
             <Menu  ativo={3}/>
-            <Page />
+            <Page data={props.data}/>
         </div>
     )
 }
 
+export function getStaticProps(){
+
+
+    return{
+        props: {
+            data:{
+                status: "Offline",
+                cmdReceived : 0,
+                guildCount : 0,
+                userCount : 0,    
+            }
+        }
+    }
+}
+
 export default Status;
 
-function Page(){
+function Page(props){
    
-    const [data, setData] = useState({status: "Offline",
-        cmdReceived : 0,
-        guildCount : 0,
-        userCount : 0,
-    }); 
-   
-    useEffect(() => {
-       fetch(urlStatus)
-       .then((response) => response.json())
-       .then((jsonData) => {
-           setData(jsonData);
-       })
-    },[]);
 
     return (
         <Center>
@@ -71,27 +73,27 @@ function Page(){
                 Status
             </Title>
             <Title>
-                {data.status}
+                {props.data.status}
             </Title>
             <Numbers>
                 <Title>
                     Comandos recebidos
                     <Title>
-                    {data.cmdReceived}
+                    {props.data.cmdReceived}
                     </Title>
                 </Title>
                 
                 <Title>
                     Grupos
                     <Title>
-                    {data.guildCount}
+                    {props.data.guildCount}
                     </Title>
                 </Title>
                 
                 <Title>
                     Usuarios
                     <Title>
-                    {data.userCount}
+                    {props.data.userCount}
                     </Title>
                 </Title>
                 
