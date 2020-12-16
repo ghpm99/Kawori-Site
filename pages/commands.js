@@ -83,6 +83,9 @@ function Page(){
                     <br/>Pode ser utilizado também para obter ajuda sobre um comando especifico.
                     <br/>Utilize o comando <Point>{prefix}help comando</Point> para ter uma ajuda mais especifica para o comando.                    
                     <br/>Caso precise de uma ajuda melhor fique a vontade para entrar no nosso grupo do discord
+                    <hr/>
+                    Parametros:
+                    <br/>comando = <Point>Opcional</Point> comando para visualizar ajuda sobre.
                     </TableDescription>
                 <TableExample>
                     {prefix}help
@@ -95,7 +98,7 @@ function Page(){
                     {prefix}info
                 </TableCommand>
                 <TableDescription>
-                Mostra informações uteis do perfil do usuario
+                    Mostra informações uteis do perfil do usuario
                 </TableDescription>
                 <TableExample>
                 {prefix}info
@@ -108,6 +111,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Altera o idioma
+                <hr/>
+                Parametros:
+                <br/>idioma = idiomas disponiveis: pt-br, espanol
                 </TableDescription>
                 <TableExample>
                 {prefix}region
@@ -121,11 +127,15 @@ function Page(){
                     {prefix}gear
                 </TableCommand>
                 <TableDescription>
-                Mostra a gear ativa do usuário mencionado, caso não possua ninguem mencionado será mostrada a gear do autor.                
-                <br/>Parametros validos:[AP,APAWAK,DP,LVL,NAME,CLASS,SKILL]. 
-                <br/><Point>{prefix}gear -add </Point>: adiciona uma nova gear
-                <br/><Point>{prefix}gear -select </Point>: comando para alternar entre os gear cadastrados.
-                <br/><Point>{prefix}gear (parametro=valor) </Point>: altera dados da gear ativa.
+                Mostra a gear ativa do usuário mencionado, caso não possua ninguem mencionado será mostrada a gear do autor.
+                <hr/>
+                Parametros:
+                <br/>(atributo=valor) = atributos validos: AP,APAWAK,DP,LVL,NAME,CLASS,SKILL 
+                <br/><Point>CLASS</Point> : archer,berserker,darkknight,guardian,kunoichi,lahn,maehwa,musah,mystic,ninja,ranger,
+                <br/>shai,sorceress,striker,tamer,valkyrie,warrior,witch,wizard
+                <br/><Point>SKILL</Point> : awakening,succession
+                <br/>-add = adiciona uma nova gear
+                <br/>-select = comando para alternar entre os gear cadastrados.
                 </TableDescription>
                 <TableExample>
                 {prefix}gear -add
@@ -140,35 +150,14 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Mostra o rank de Gear de acordo com critério selecionado
-                <br/>Critérios disponiveis:GS,AP,APAWAK,DP,LVL
+                <hr/>
+                Parametros:
+                <br/>criterio = GS,AP,APAWAK,DP,LVL
                 </TableDescription>
                 <TableExample>
                 {prefix}rank ap
                 </TableExample>
-            </TableRow>
-
-            <TableRow>
-                <TableCommand>
-                    {prefix}char
-                </TableCommand>
-                <TableDescription>
-                    <Point>**em desuso**</Point>
-                <br/>Exibe e altera informações sobre o personagem cadastrado 
-                <br/><Point>{prefix}char -all </Point>: Mostra todos personagens cadastrados.
-                <br/><Point>{prefix}char -set (parametro=valor)</Point>: Altera informações sobre personagem ativo no momento.
-                <br/>Informações alteraveis: NAME, CLASS, SKILL
-                <br/>NAME = Altera nome do personagem
-                <br/>CLASS = Altera classe do personagem
-                <br/>SKILL = Altera entre despertada e sucessão
-                <br/>Exemplo de comando <Point>{prefix}char -set CLASS=wr </Point>: altera a classe do personagem ativo para Guerreiro
-                <br/>Lista de classes disponiveis:archer,berserker,darkknight,guardian,kunoichi,lahn,maehwa,musah,mystic,ninja,ranger,
-                <br/>shai,sorceress,striker,tamer,valkyrie,warrior,witch,wizard
-                <br/>Lista de modos de batalha disponiveis:awakening,succession
-                </TableDescription>
-                <TableExample>
-                    
-                </TableExample>
-            </TableRow>
+            </TableRow>           
 
             <TableRow>
                 <TableCommand>
@@ -176,8 +165,10 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Agenda uma node war
-                <br/><Point>{prefix}nw -show </Point>:Mostra as NodeWar agendadas
-                <br/><Point>{prefix}nw -presence (id) </Point>:Mostra a lista de presença da node war de acordo com a reação no aviso.
+                <hr/>
+                Parametros:
+                <br/>-show = Mostra as NodeWar agendadas
+                <br/>-presence (id) = Mostra a lista de presença da node war de acordo com a reação no aviso.
                 <br/>O parametro ID se encontra no aviso da NodeWar!
                 </TableDescription>
                 <TableExample>
@@ -191,10 +182,12 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Configura informações no grupo/servidor
-                <br/><Point>{prefix}config (canais)</Point>**canais**=canal/canais mencionados que serão configurados
+                <hr/>
+                Parametros:
+                <br/>canais = canal/canais mencionados que serão configurados
                 <br/>Configura se o bot pode aceitar comandos dos canais mencionados.
                 <br/>Obs: os canais deverão ser mencionados 
-                <br/><Point>{prefix}config (cargos)</Point>**cargos**=cargo/cargos mencionados que serão configurados
+                <br/>cargos = cargo/cargos mencionados que serão configurados
                 <br/>Configura quais grupos de comandos poderão ser utilizados.
                 <br/>Obs: os cargos deverão ser mencionados
                 </TableDescription>
@@ -222,7 +215,12 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando para configurar o sistema de auto role.
-                
+                <hr/>
+                Parametros:
+                <br/>canal = mencionar o canal que deseja receber a configuração de auto-role
+                <br/>role = mencionar a role que deseja ser aplicada na configuração
+                <br/>texto = mensagem para que seja aplicada o role
+                <br/> <Point>Sem parametro</Point> = abre janela de configuração de auto-role
                 </TableDescription>
                 <TableExample>
                 {prefix}autorole
@@ -247,6 +245,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Escolhe aleatoriamente entre as opções.
+                <hr/>
+                Parametros:
+                <br/>opção1,opção2,opção3,[...] = opções que serão escolhidas aleatoriamente.
                 </TableDescription>
                 <TableExample>
                 {prefix}pick opção1,opção2
@@ -259,6 +260,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Exibe o avatar do usuário mencionado
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}avatar <Point>user</Point>
@@ -271,6 +275,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de interação de abraço.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                     </TableDescription>
                     <TableExample>
                     {prefix}hug <Point>user</Point>
@@ -283,6 +290,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação de tapa.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}slap <Point>user</Point>
@@ -295,6 +305,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação comendo.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                     </TableDescription>
                     <TableExample>
                     {prefix}nom <Point>user</Point>  
@@ -307,6 +320,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação acariciando.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                     </TableDescription>
                     <TableExample>
                     {prefix}cuddle <Point>user</Point>
@@ -319,6 +335,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação de beijo;
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}kiss <Point>user</Point>
@@ -331,6 +350,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação de mordida
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}bite <Point>user</Point>
@@ -343,6 +365,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação de dança
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}dance <Point>user</Point>
@@ -355,6 +380,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Awoo! Uma raposa!
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}awoo <Point>user</Point>
@@ -367,6 +395,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     OwO whats this command?
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}owo <Point>user</Point>
@@ -379,6 +410,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação cutucar.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}poke <Point>user</Point>
@@ -391,6 +425,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de reação, sensualmente envergonhado.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}lewd <Point>user</Point>
@@ -403,6 +440,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de reação, envergonhado.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}blush <Point>user</Point>
@@ -415,6 +455,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de reação, confuso.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}confused <Point>user</Point>
@@ -427,6 +470,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de emoção, chorando.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}cry <Point>user</Point>
@@ -439,6 +485,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de emoção, triste.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}sad <Point>user</Point>
@@ -451,6 +500,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação cafune.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}pat <Point>user</Point>
@@ -463,6 +515,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Comando de raposinha.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}fox <Point>user</Point>
@@ -475,6 +530,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação soco.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}punch <Point>user</Point>
@@ -487,6 +545,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                     Somente para anjos com asas.
+                    <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                 </TableDescription>
                 <TableExample>
                 {prefix}trap <Point>user</Point>
@@ -499,6 +560,9 @@ function Page(){
                 </TableCommand>
                 <TableDescription>
                 Comando de interação explodir.
+                <hr/>
+                Parametros:
+                <br/>@user = mencione o usuario para a interação.
                     </TableDescription>
                     <TableExample>
                     {prefix}explosion <Point>user</Point>
