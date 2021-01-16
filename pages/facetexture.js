@@ -100,9 +100,7 @@ padding:20px;
 float:none;
 margin-top:20px;
 margin-bottom:5px;
-
-a{
-    
+a{    
 color: #D3D3D3;
 text-align: center;
 padding: 14px 16px;
