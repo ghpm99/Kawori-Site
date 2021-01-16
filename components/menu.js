@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 const MenuNav = styled.div`
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.0);      
-    width: auto;
+    background-color: rgba(0, 0, 0, 0.0);
     padding:2px;
+    display:block;
+    width:auto;
     a{
     float: right;
     color: #A9A9A9;
@@ -33,7 +34,10 @@ function Menu(props){
             </Link>
             <Link href="https://discord.gg/5rwtq5V">
                 <a>Comunidade</a>
-            </Link>     
+            </Link>
+            <Link href="/facetexture">
+                <a className={props.ativo === 3 ? 'active' : null}>Face Texture Editor</a>
+            </Link>
             <Link href="/commands">
                 <a className={props.ativo === 2 ? 'active' : null}>Comandos</a>
             </Link>

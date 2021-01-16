@@ -9,7 +9,13 @@ const GlobalStyle =  createGlobalStyle`
         background-repeat: no-repeat;
         background-position: center bottom;
         background-attachment: fixed;
+        background-size:100%;
+        width:100%;
+        margin:0px;
     }
+    html {
+        scroll-behavior: smooth;
+      }
 `;
 
 function Head({title}){
