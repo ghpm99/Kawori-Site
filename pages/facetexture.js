@@ -3,7 +3,6 @@ import Menu from '../components/menu';
 import styled from 'styled-components';
 import Card from '../components/card';
 import Link from 'next/link';
-import React, { useRef } from 'react';
 
 const Title = styled.h1`
 text-align:center;
