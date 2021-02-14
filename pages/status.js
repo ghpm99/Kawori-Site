@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import React from 'react';
 
 
-
 const Title = styled.div`
 font-size: 30px;
 color:white;
