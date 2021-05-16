@@ -1,7 +1,7 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
-import React from 'react';
+import React,{ useState , useEffect} from 'react';
 
 
 const Title = styled.div`
@@ -36,35 +36,37 @@ text-align:center;
 flex-direction:row;
 `;
 
-function Status(props){
+const urlStatus = "https://kawori.herokuapp.com/status";
+
+function Status(){
     return (
         <div>
-            <Head title='Kawori bot' /> 
+            <Head title='Kawori bot' />            
             <Menu  ativo={3}/>
-            <Page data={props.data}/>
+            <Page />
         </div>
     )
 }
 
-export function getStaticProps(){
-
-
-    return{
-        props: {
-            data:{
-                status: "Offline",
-                cmdReceived : 0,
-                guildCount : 0,
-                userCount : 0,    
-            }
-        }
-    }
-}
-
 export default Status;
 
-function Page(props){
+function Page(){
    
+    const [data, setData] = useState({
+        status: "Offline",
+        cmdReceived : 0,
+        guildCount : 0,
+        userCount : 0,
+    }); 
+   
+    useEffect(() => {
+       fetch(urlStatus)
+       .then((response) => response.json())
+       .then((jsonData) => {
+           console.log(jsonData);
+           setData(jsonData);
+       })
+    },[]);
 
     return (
         <Center>
@@ -72,27 +74,27 @@ function Page(props){
                 Status
             </Title>
             <Title>
-                {props.data.status}
+                {data.status}
             </Title>
             <Numbers>
                 <Title>
                     Comandos recebidos
                     <Title>
-                    {props.data.cmdReceived}
+                    {data.cmdReceived}
                     </Title>
                 </Title>
                 
                 <Title>
                     Grupos
                     <Title>
-                    {props.data.guildCount}
+                    {data.guildCount}
                     </Title>
                 </Title>
                 
                 <Title>
                     Usuarios
                     <Title>
-                    {props.data.userCount}
+                    {data.userCount}
                     </Title>
                 </Title>
                 
