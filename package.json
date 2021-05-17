@@ -4,7 +4,7 @@
     "next-images": "^1.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.3.0"
   },
   "name": "KaworiSite",
   "description": "Site para o bot discord",
