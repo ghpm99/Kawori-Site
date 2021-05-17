@@ -35,6 +35,9 @@ function Menu(props){
             <Link href="https://discord.gg/5rwtq5V">
                 <a>Comunidade</a>
             </Link>
+            <Link href="/status">
+                <a className={props.ativo === 4 ? 'active' : null}>Inicio</a>
+            </Link>
             <Link href="/facetexture">
                 <a className={props.ativo === 3 ? 'active' : null}>Face Texture Editor</a>
             </Link>

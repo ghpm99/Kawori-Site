@@ -42,7 +42,7 @@ function Status(){
     return (
         <div>
             <Head title='Kawori bot' />            
-            <Menu  ativo={3}/>
+            <Menu  ativo={4}/>
             <Page />
         </div>
     )
@@ -63,7 +63,6 @@ function Page(){
        fetch(urlStatus)
        .then((response) => response.json())
        .then((jsonData) => {
-           console.log(jsonData);
            setData(jsonData);
        })
     },[]);
