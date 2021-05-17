@@ -36,7 +36,7 @@ function Menu(props){
                 <a>Comunidade</a>
             </Link>
             <Link href="/status">
-                <a className={props.ativo === 4 ? 'active' : null}>Inicio</a>
+                <a className={props.ativo === 4 ? 'active' : null}>Status</a>
             </Link>
             <Link href="/facetexture">
                 <a className={props.ativo === 3 ? 'active' : null}>Face Texture Editor</a>
