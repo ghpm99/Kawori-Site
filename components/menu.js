@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Profile from '../components/profileIcon';
 import Link from 'next/link';
+
 
 const MenuNav = styled.div`
     overflow: hidden;
@@ -26,10 +28,10 @@ const MenuNav = styled.div`
 
 
 function Menu(props){
-    
     return(
         <MenuNav >
-            <Link href="https://discordapp.com/api/oauth2/authorize?client_id=622218589243572224&permissions=8&scope=bot">
+            <Profile/>
+            <Link href="https://discordapp.com/api/oauth2/authorize?client_id=622218589243572224&permissions=8&scope=bot" >
                 <a>Incorporar Bot!</a>
             </Link>
             <Link href="https://discord.gg/5rwtq5V">

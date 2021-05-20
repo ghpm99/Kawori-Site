@@ -1,7 +1,8 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
-import React,{ useState , useEffect} from 'react';
+import React from 'react';
+import { encode } from "js-base64";
 
 
 const Title = styled.div`
@@ -10,7 +11,7 @@ color:white;
 margin:20px;
 margin-left:50px;
 margin-right:50px;
-`
+`;
 
 const Center = styled.div`
 display: -webkit-flex;
@@ -36,68 +37,95 @@ text-align:center;
 flex-direction:row;
 `;
 
-const urlStatus = "https://kawori.herokuapp.com/status";
 
-function Status(){
+
+function Status(props) {
+
     return (
         <div>
-            <Head title='Kawori bot' />            
-            <Menu  ativo={4}/>
-            <Page />
+
+            <Head title='Kawori bot' />
+            <Menu ativo={4} />
+            <Page status={props.data.status} cmdReceived={props.data.cmdReceived} guildCount={props.data.guildCount} userCount={props.data.userCount} />
+
         </div>
     )
 }
 
 export default Status;
 
-function Page(){
-   
-    const [data, setData] = useState({
-        status: "Offline",
-        cmdReceived : 0,
-        guildCount : 0,
-        userCount : 0,
-    }); 
-   
-    useEffect(() => {
-       fetch(urlStatus)
-       .then((response) => response.json())
-       .then((jsonData) => {
-           setData(jsonData);
-       })
-    },[]);
+export async function getServerSideProps(context) {
+    try {
+        const urlStatus = process.env.API_SPRING_URL + "/status";
 
+        const res = await fetch(urlStatus, {
+            method: "GET",
+            headers: { "Authorization": "Basic " + encode(process.env.API_SPRING_ID + ":" + process.env.API_SPRING_SECRET) }
+        });
+        const data = await res.json();
+        
+        if (!data) {
+            return {
+                props: {
+                    data: {
+                        status: "Offline",
+                        cmdReceived: 0,
+                        guildCount: 0,
+                        userCount: 0,
+                    }
+                }
+            }
+        }
+        return {
+            props: { data }
+        }
+    } catch {
+        return {
+            props: {
+                data: {
+                    status: "Offline",
+                    cmdReceived: 0,
+                    guildCount: 0,
+                    userCount: 0,
+                }
+            }
+
+        }
+    }
+}
+
+function Page(props) {
     return (
         <Center>
             <Title>
                 Status
             </Title>
             <Title>
-                {data.status}
+                {props.status}
             </Title>
             <Numbers>
                 <Title>
                     Comandos recebidos
                     <Title>
-                    {data.cmdReceived}
+                        {props.cmdReceived}
                     </Title>
                 </Title>
-                
+
                 <Title>
                     Grupos
                     <Title>
-                    {data.guildCount}
+                        {props.guildCount}
                     </Title>
                 </Title>
-                
+
                 <Title>
                     Usuarios
                     <Title>
-                    {data.userCount}
+                        {props.userCount}
                     </Title>
                 </Title>
-                
-            </Numbers>            
+
+            </Numbers>
         </Center>
     )
 }
