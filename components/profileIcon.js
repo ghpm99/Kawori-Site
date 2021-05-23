@@ -10,21 +10,25 @@ const Image = styled.img`
     border-radius:50%
 `;
 
-function Icon(){
-    const [ session] = useSession();    
-    return(
-        <>
-        {!session && <>            
+const ProfileButtonStyled = styled.div`
+    cursor:pointer;
+`;
+
+function Icon() {
+    const [session] = useSession();
+    return (
+        <ProfileButtonStyled>
+            {!session && <>
                 <a onClick={() => signIn('discord')}>Logar</a>
-        </>}
-        {session && <>            
-            <a>
-            <Link href="/account">
-                <Image src={session.user.image}/>
-            </Link>
-            </a>
-        </>}
-        </>
+            </>}
+            {session && <>
+                <a>
+                    <Link href="/account">
+                        <Image src={session.user.image} />
+                    </Link>
+                </a>
+            </>}
+        </ProfileButtonStyled>
     );
 }
 
