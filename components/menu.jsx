@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Profile from '../components/profileIcon';
+import Profile from './profileIcon';
 import Link from 'next/link';
 
 

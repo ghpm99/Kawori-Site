@@ -2,7 +2,7 @@ import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
 import React from 'react';
-import { encode } from "js-base64";
+import authorization from '../security/authorization';
 
 
 const Title = styled.div`
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
 
         const res = await fetch(urlStatus, {
             method: "GET",
-            headers: { "Authorization": "Basic " + encode(process.env.API_SPRING_ID + ":" + process.env.API_SPRING_SECRET) }
+            headers: authorization()
         });
         const data = await res.json();
         

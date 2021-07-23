@@ -1,40 +1,9 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
-import Link from 'next/link';
+import InternalMenu from '../components/internalMenu';
 import { getSession, useSession, signOut } from 'next-auth/client';
-import { encode } from "js-base64";
-
-const InternalMenuDiv = styled.div`
-display: -webkit-flex;
-display: flex;
--webkit-align-items: center;
-align-items: center;
--webkit-justify-content: center;
-justify-content: center;
-flex-direction: row;
-flex-wrap:wrap;
-overflow: hidden;
-background-color: rgba(255, 255, 255, 0.1);      
-width: auto;
-padding:20px;
-float:none;
-margin-top:20px;
-margin-bottom:5px;
-a{    
-color: #A9A9A9;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 40px;
-&:hover {        
-    color: #D3D3D3;
-    }   
-&.active {        
-    color: white;
-    }  
- }
-`;
+import authorization from '../security/authorization';
 
 const Profile = styled.div`
 background-color:#2f3237;
@@ -109,7 +78,7 @@ function Account(props) {
         <div>
             <Head title='Kawori bot' />
             <Menu ativo={0} />
-            <InternalMenu />
+            <InternalMenu ativo={0}/>
             <Page props={props} />
         </div>
     )
@@ -130,13 +99,14 @@ export async function getServerSideProps(context) {
         };
     }
 
+
     const urlStatus = process.env.API_SPRING_URL + "/user/" + session.user.id;
-
+    
     try {
-
+        
         const res = await fetch(urlStatus, {
             method: "GET",
-            headers: { "Authorization": "Basic " + encode(process.env.API_SPRING_ID + ":" + process.env.API_SPRING_SECRET) }
+            headers: authorization()
         });
 
         const data = await res.json();
@@ -183,24 +153,8 @@ function Page(props) {
     )
 }
 
-function InternalMenu() {
-    return (
-        <InternalMenuDiv>
-            <Link href="/account" >
-                <a className='active'>Perfil</a>
-            </Link>
-            <Link href="/guilds" >
-                <a>Grupos</a>
-            </Link>
-            <Link href="/gear" >
-                <a>Gear</a>
-            </Link>
-        </InternalMenuDiv>
-    )
-}
-
 function ProfileImage() {
-    const [session] = useSession();
+    const [session] = useSession();    
     return (
         <>
             {session && <Image src={session.user.image} />}

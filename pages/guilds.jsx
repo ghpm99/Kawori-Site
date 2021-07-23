@@ -1,41 +1,10 @@
 import Head from '../components/head';
 import Menu from '../components/menu';
 import styled from 'styled-components';
-import Link from 'next/link';
-import { getSession, useSession } from 'next-auth/client';
-import { encode } from "js-base64";
+import InternalMenu from '../components/internalMenu';
+import { getSession } from 'next-auth/client';
 import { parseISO, format } from "date-fns";
-
-const InternalMenuDiv = styled.div`
-display: -webkit-flex;
-display: flex;
--webkit-align-items: center;
-align-items: center;
--webkit-justify-content: center;
-justify-content: center;
-flex-direction: row;
-flex-wrap:wrap;
-overflow: hidden;
-background-color: rgba(255, 255, 255, 0.1);      
-width: auto;
-padding:20px;
-float:none;
-margin-top:20px;
-margin-bottom:5px;
-a{    
-color: #A9A9A9;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 40px;
-&:hover {        
-    color: #D3D3D3;
-    }   
-&.active {        
-    color: white;
-    }  
- }
-`;
+import authorization from '../security/authorization';
 
 const Container = styled.div`
 color:white;
@@ -119,7 +88,7 @@ function Guilds(props) {
         <div>
             <Head title='Kawori bot' />
             <Menu ativo={0} />
-            <InternalMenu />
+            <InternalMenu ativo={1}/>
             <Page props={props} />
         </div>
     )
@@ -143,7 +112,7 @@ export async function getServerSideProps(context) {
 
         const res = await fetch(urlStatus, {
             method: "GET",
-            headers: { "Authorization": "Basic " + encode(process.env.API_SPRING_ID + ":" + process.env.API_SPRING_SECRET) }
+            headers: authorization()
         });
         const data = await res.json();
         return {
@@ -168,22 +137,6 @@ function Page(props) {
                 <MembroCard membro={membro} />
             ))}
         </Container>
-    )
-}
-
-function InternalMenu() {
-    return (
-        <InternalMenuDiv>
-            <Link href="/account" >
-                <a>Perfil</a>
-            </Link>
-            <Link href="/guilds" >
-                <a className='active'>Grupos</a>
-            </Link>
-            <Link href="/gear" >
-                <a>Gear</a>
-            </Link>
-        </InternalMenuDiv>
     )
 }
 
