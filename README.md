@@ -13,7 +13,7 @@ Utiliza NextJs com Styled-componentes e Next-auth.
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] Implementação de authenticação atraves de API Key
+- [x] Implementação de authenticação atraves de API Key
 - [ ] Implementação de edição da janela de grupos/painel interno
 
 ## 💻 Pré-requisitos
