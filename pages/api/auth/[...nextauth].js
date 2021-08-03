@@ -30,7 +30,8 @@ export default NextAuth({
       return false;
 
     },
-    session: async (session, user) => {
+    session: async (session, user) => {      
+      
       session.user.id = user.sub;
       session.user.role = await getUserRole(user.sub);
       return Promise.resolve(session);
@@ -50,7 +51,7 @@ export default NextAuth({
 
 async function onSignIn(discordUser) {
 
-  const urlLogin = process.env.API_SPRING_URL + "/_login?id=" + discordUser.id + "&username=" + discordUser.name +
+  const urlLogin = process.env.API_SPRING_URL + "/user/_login?id=" + discordUser.id + "&username=" + discordUser.name +
     "&discriminator=" + discordUser.discriminator + "&avatar=" + discordUser.image + "&locale=" + discordUser.locale + "&verified=" + discordUser.verified;
 
 
@@ -63,7 +64,7 @@ async function onSignIn(discordUser) {
 
 function onSignOut(idUser) {
 
-  const urlLogout = process.env.API_SPRING_URL + "/_logout?id=" + idUser;
+  const urlLogout = process.env.API_SPRING_URL + "/user/_logout?id=" + idUser;
 
   fetch(urlLogout, {
     method: "GET",
@@ -73,7 +74,7 @@ function onSignOut(idUser) {
 }
 
 async function getUserRole(idUser) {
-  const urlRole = process.env.API_SPRING_URL + "/role?id=" + idUser;
+  const urlRole = process.env.API_SPRING_URL + "/user/role?id=" + idUser;
 
   const res = await fetch(urlRole, {
     method: "GET",

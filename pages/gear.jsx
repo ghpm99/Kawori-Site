@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
 
         const trina = await loadTrina();
 
-        const urlStatus = process.env.API_SPRING_URL + "/gearsByIdUser?id=" + session.user.id;
+        const urlStatus = process.env.API_SPRING_URL + "/gear/gearsByIdUser?id=" + session.user.id;
 
         const res = await fetch(urlStatus, {
             method: "GET",

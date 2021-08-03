@@ -1,8 +1,8 @@
-import { encode } from "js-base64";
 
-function requestAuthorization(){     
-    return {"Authorization" : "Basic " + encode(process.env.API_SPRING_ID + ":" + process.env.API_SPRING_SECRET)}; 
+function requestAuthorization(){   
+   const  keyValue = process.env.API_SPRING_SECRET;
     
+    return {"X-Auth-Token" : keyValue}; 
     
 }
 

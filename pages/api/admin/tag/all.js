@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     if (req.method == "GET") {
 
-        const urlAdventureFame = process.env.API_SPRING_URL + "/admin/v2/tag?id=" + session.user.id + "&page=" + req.headers.page + "&size=" + req.headers.size;
+        const urlAdventureFame = process.env.API_SPRING_URL + "/v2/admin/tag?id=" + session.user.id + "&page=" + req.headers.page + "&size=" + req.headers.size;
 
         const resBack = await fetch(urlAdventureFame, {
             method: "GET",

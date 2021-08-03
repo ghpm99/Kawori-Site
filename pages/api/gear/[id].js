@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     if (req.method == "DELETE") {      
         
 
-        const urlStatus = process.env.API_SPRING_URL + "/gear?idUser=" + session.user.id + "&idGear=" + id;
+        const urlStatus = process.env.API_SPRING_URL + "/gear/gear?idUser=" + session.user.id + "&idGear=" + id;
 
         const resBack = await fetch(urlStatus, {
             method: "DELETE",
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         
     }else if(req.method == "GET"){
        
-        const urlStatus = process.env.API_SPRING_URL + "/gearById?idGear=" + id;
+        const urlStatus = process.env.API_SPRING_URL + "/gear/gearById?idGear=" + id;
 
         const resBack = await fetch(urlStatus, {
             method: "GET",
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         
         const body = req.body;        
 
-        const urlPostGear = process.env.API_SPRING_URL + "/gear?idUser=" + session.user.id + "&idGear=" + id + "&characterName=" + body.state.characterName + "&class=" + body.state.class +
+        const urlPostGear = process.env.API_SPRING_URL + "/gear/gear?idUser=" + session.user.id + "&idGear=" + id + "&characterName=" + body.state.characterName + "&class=" + body.state.class +
         "&battleMode=" + body.state.battleMode + "&level=" + body.state.level + "&ap=" + body.state.ap + "&apawak=" + body.state.apawak + "&dp=" + body.state.dp + "&trina=" + body.state.trina
 
         const resBack = await fetch(urlPostGear,{
