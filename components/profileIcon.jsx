@@ -1,34 +1,46 @@
-import { signIn, useSession } from 'next-auth/client'
+import { Avatar, Button, Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList, useColorModeValue } from '@chakra-ui/react';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import React from 'react';
-import styled from 'styled-components';
-import Link from 'next/link';
-
-const Image = styled.img`    
-    margin-left:auto;
-    width:32px;
-    height:32px;
-    border-radius:50%
-`;
-
-const ProfileButtonStyled = styled.div`
-    cursor:pointer;
-`;
+import useTranslation from '../intl/useTranslation';
 
 function Icon() {
     const [session] = useSession();
+    const {t} = useTranslation();
     return (
-        <ProfileButtonStyled>
+        <Menu>
             {!session && <>
-                <a onClick={() => signIn('discord')}>Logar</a>
+                <Button as={'a'}
+                    fontSize={'sm'}
+                    fontWeight={400}
+                    variant={'link'}
+                    href={'#'}
+                    onClick={() => signIn('discord')}>
+                    Logar
+                </Button>
+
             </>}
             {session && <>
-                <a>
-                    <Link href="/account">
-                        <Image src={session.user.image} />
-                    </Link>
-                </a>
+                <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                    <Avatar size={'sm'} src={session.user.image} />
+                </MenuButton>
+                <MenuList color={useColorModeValue('black', 'white')}>
+                    <MenuGroup title={t("menu_profile_button_01")}>
+                        <MenuItem as="a" href="/account"> {t("menu_profile_button_02")}</MenuItem>
+                        <MenuItem>{t("menu_profile_button_03")}</MenuItem>
+                    </MenuGroup>
+                    <MenuDivider />
+                    <MenuItem onClick={() => signOut()}>{t("menu_profile_button_04")}</MenuItem>
+                </MenuList>
             </>}
-        </ProfileButtonStyled>
+
+
+
+        </Menu>
     );
 }
 

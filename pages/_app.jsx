@@ -1,6 +1,8 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { Provider } from 'next-auth/client'
-import { ModalProvider } from 'styled-react-modal'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
+import theme from '../src/theme'
+import { storeWrapper } from "../src/store";
 
 const GlobalStyle = createGlobalStyle`
     body{
@@ -18,23 +20,22 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
-
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <>
       <Provider session={pageProps.session}>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <ModalProvider>
+        <ChakraProvider resetCSS theme={theme}>
+          <ColorModeProvider
+            options={{
+              useSystemColorMode: true,
+            }}
+          >
             <Component {...pageProps} />
-          </ModalProvider>
-        </ThemeProvider>
+          </ColorModeProvider>
+        </ChakraProvider>
       </Provider>
     </>
   )
 }
+
+export default storeWrapper.withRedux(App);

@@ -133,13 +133,13 @@ export default Main;
 function Intro(){
     return(
         <Cards>
-            <Card imagem='https://i.imgur.com/Eh5BL10.png' 
+            <Card imagem='/Eh5BL10.png' 
             texto='Face Texture Editor é um programa simples que auxilia a alterar as Face Texture dos personagens do Black Desert Online, criando assim um visual belo' alinhamento='1'/>
-            <Card imagem='https://i.imgur.com/0GUMUML.png' 
+            <Card imagem='/0GUMUML.png' 
             texto='De forma facil e simples personalize a seleção de personagem de seu jogo!' alinhamento='0'/>
-            <Card imagem='https://i.imgur.com/fYJxH1X.png' 
+            <Card imagem='/fYJxH1X.png' 
             texto='Utilize qualquer imagem para uma personalização completa!' alinhamento='1'/>
-            <Card imagem='https://i.imgur.com/Ps0tyoy.png' 
+            <Card imagem='/Ps0tyoy.png' 
             texto='Surpreenda seus amigos com sua seleção de personagem!' alinhamento='0'/>
         </Cards>
     )
