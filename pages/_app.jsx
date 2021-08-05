@@ -1,24 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
-import { Provider } from 'next-auth/client'
-import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
-import theme from '../src/theme'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
+import { Provider } from 'next-auth/client';
 import { storeWrapper } from "../src/store";
-
-const GlobalStyle = createGlobalStyle`
-    body{
-        border: 0px solid #000;        
-        background-color: #36393f;
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-attachment: fixed;
-        background-size:100%;
-        width:100%;
-        margin:0px;
-    }
-        html {
-            scroll-behavior: smooth;
-    }
-`
+import theme from '../src/theme';
 
 function App({ Component, pageProps }) {
   return (

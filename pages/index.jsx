@@ -1,5 +1,5 @@
 import Card from '../components/card';
-import { Container } from '../components/Container';
+import { ContainerFlex } from '../components/container';
 import Head from '../components/head';
 import Menu from '../components/menu';
 import useTranslation from '../intl/useTranslation';
@@ -21,7 +21,7 @@ function Page(){
     const {t} = useTranslation();
    
     return (
-        <Container>            
+        <ContainerFlex>            
             <Card imagem='/uHVPttO.png' 
             texto={t("index_card_text_01")} alinhamento='1'/>
             <Card imagem='/soEVRkA.png'
@@ -30,6 +30,6 @@ function Page(){
             texto={t("index_card_text_03")} alinhamento='1' />
             <Card imagem='/oKTN61P.png'
             texto={t("index_card_text_04")} alinhamento='0' />
-        </Container>
+        </ContainerFlex>
     )
 }

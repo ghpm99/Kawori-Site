@@ -77,7 +77,7 @@ function Account(props) {
     return (
         <div>
             <Head title='Kawori bot' />
-            <Menu ativo={0} />
+            <Menu />
             <InternalMenu ativo={0}/>
             <Page props={props} />
         </div>

@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
 import settingsReducer from "./users/settings";
-import userReducer from "./users";
-import postsReducer from "./posts";
+import statusReducer from "./backend/index"
 
 export default combineReducers({
   settings: settingsReducer,
-  user: userReducer,
-  posts: postsReducer,
+  status: statusReducer,
 });

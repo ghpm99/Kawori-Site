@@ -12,4 +12,4 @@ const makeStore = () => {
 };
 
 // export an assembled wrapper
-export const storeWrapper = createWrapper(makeStore, { debug: false });
+export const storeWrapper = createWrapper(makeStore, { debug: true });

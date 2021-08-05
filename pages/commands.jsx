@@ -1,15 +1,9 @@
+import { Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import Head from '../components/head';
 import Menu from '../components/menu';
-import styled from 'styled-components';
-import { Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
-import requestAuthorization from '../security/authorization';
 import useTranslation from '../intl/useTranslation';
+import requestAuthorization from '../security/authorization';
 
-const prefix = "k.";
-
-const Point = styled.i`
-color: #FA8072;
-`;
 
 export async function getStaticProps(context){
     const urlCommands = process.env.API_SPRING_URL + "/config/commands";
@@ -54,10 +48,10 @@ function Page(props) {
             </Thead>
             <Tbody>
                 {props.commands.map((command) => (
-                    <Tr>
-                        <Td>{command.command}</Td>
-                        <Td>{t(command.description)}</Td>
-                        <Td>{t(command.example)}</Td>
+                    <Tr key={command.command}>
+                        <Td key={command.command}>{command.command}</Td>
+                        <Td key={command.description}>{t(command.description)}</Td>
+                        <Td key={command.example}>{t(command.example)}</Td>
                     </Tr>
                 ))}
             </Tbody>

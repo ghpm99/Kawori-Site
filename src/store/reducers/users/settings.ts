@@ -1,10 +1,8 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { USER_SETTINGS_UPDATE_LANGUAGE } from "../../actions";
 
-const initialState = {
-    modo: "dark",
-    language: "ptbr",
-    postsPerPage: 4,
+const initialState = {    
+    language: "ptbr",    
 };
 
 const reducer = (state = initialState, action) => {

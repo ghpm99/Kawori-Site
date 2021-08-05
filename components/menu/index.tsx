@@ -5,10 +5,10 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import useTranslation from '../../intl/useTranslation';
 import Icon from './profileIcon';
-import useTranslation from '../intl/useTranslation';
-
-
+import { settingsUpdateLang } from '../../src/store/actions/users/settings'
 
 const Links = [
   { text: 'menu_button_01', url: '/' },
@@ -39,10 +39,19 @@ export default function Menu() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { language } = useSelector((state: RootStateOrAny) => state.settings);
+
+  const clicou = () => {
+    if (language === "ptbr")
+      dispatch(settingsUpdateLang("en"));
+    else
+      dispatch(settingsUpdateLang("ptbr"));
+  }
 
   return (
-    <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} >
+    <Box bg={useColorModeValue('gray.100', 'gray.800')} px={4} >
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
         <IconButton
           size={'md'}
@@ -57,11 +66,24 @@ export default function Menu() {
             color={useColorModeValue('black', 'white')}
             display={{ base: 'none', md: 'flex' }}>
             {Links.map((a) => (
-              <NavLink link={a}>{t(a.text)}</NavLink>
+              <NavLink link={a} key={a.text}>{t(a.text)}</NavLink>
             ))}
           </HStack>
         </HStack>
         <Flex alignItems={'center'}>
+          <LinkChakra
+            px={2}
+            py={1}
+            rounded={'md'}
+            _hover={{
+              textDecoration: 'none',
+              bg: useColorModeValue('gray.100', 'gray.900'),
+            }}
+            color={useColorModeValue('black', 'white')}
+            onClick={clicou}>
+            {language}
+          </LinkChakra>
+
           <IconButton
             size="lg"
             variant="ghost"
@@ -77,7 +99,7 @@ export default function Menu() {
         <Box pb={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4} color={useColorModeValue('black', 'white')}>
             {Links.map((a) => (
-              <NavLink link={a}>{t(a.text)}</NavLink>
+              <NavLink link={a} key={a.text}>{t(a.text)}</NavLink>
             ))}
           </Stack>
         </Box>

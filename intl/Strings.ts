@@ -2,15 +2,22 @@ const DefaultStrings = {
     prefix: "k.",
 }
 
-
 export const LangStrings = {
     en: {
-        home: "Home",
-        commands: "Commands",
-        faceTexture: "Face Texture Editor",
-        status: "Status",
-        community: "Community",
-        incorporateBot: "Incorporate Bot!",
+        menu_button_01: "Home",
+        menu_button_02: "Commands",
+        menu_button_03: "Face Texture Editor",
+        menu_button_04: "Status",
+        menu_button_05: "Comunnity",
+        menu_button_06: "Bot!",
+        menu_profile_button_01: "Profile",
+        menu_profile_button_02: "Account",
+        menu_profile_button_03: "Configuration",
+        menu_profile_button_04: "Sign Off",
+        index_card_text_01: "Olá! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.",
+        index_card_text_02: "Possuo um sistema de Auto-Roles sicmples e facil de utilizar.",
+        index_card_text_03: "Caso você possua uma guild do Black Desert, eu posso te ajudar a guardar as informações dos membros dela.",
+        index_card_text_04: "Também possuo varios comandos de interação e muito mais!",
         name_nw_123: "Forte da Trina",
         name_nw_124: "Acampamento de Saunil",
         name_nw_125: "Parede de Pedra de Hexe",
@@ -348,7 +355,7 @@ export const LangStrings = {
         menu_profile_button_03: "Configurações",
         menu_profile_button_04: "Deslogar",
         index_card_text_01: "Olá! Meu nome é Kawori e estou aqui para te auxiliar com seu grupo no Discord.",
-        index_card_text_02: "Possuo um sistema de Auto-Roles simples e facil de utilizar.",
+        index_card_text_02: "Possuo um sistema de Auto-Roles sicmples e facil de utilizar.",
         index_card_text_03: "Caso você possua uma guild do Black Desert, eu posso te ajudar a guardar as informações dos membros dela.",
         index_card_text_04: "Também possuo varios comandos de interação e muito mais!",
         name_nw_123: "Forte da Trina",
