@@ -5,7 +5,7 @@ const defaultLocale = "ptbr";
 
 export default function useTranslation() {
   
-  const {language} = useSelector((state : RootStateOrAny) => state.settings);
+  const {language} = useSelector((state : RootStateOrAny) => state.settings);  
 
   function t(key) {
     if (!LangStrings[language][key]) {

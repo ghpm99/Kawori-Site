@@ -19,9 +19,9 @@ const initialState = {
 const reducer = (state: Status = initialState, action : AnyAction) => {
     switch (action.type) {
         case HYDRATE:
-            return { ...state, ...action.payload.status };
+            return { ...state, ...action.payload };
         case BACK_END_UPDATE_STATUS:
-            return { ...state, status: action.payload };
+            return { ...state, ...action.payload };
         default:
             return state;
     }

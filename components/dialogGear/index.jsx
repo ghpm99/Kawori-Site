@@ -1,77 +1,18 @@
-import styled from 'styled-components';
+import { ModalBody, ModalHeader } from '@chakra-ui/modal';
+import {
+    FormControl,
+    FormLabel,
+    Input,
+    Select,
+    Button,
+    Box,
+    useColorModeValue,
+    InputLeftAddon,
+    InputGroup,
+    Stack
+} from "@chakra-ui/react";
 import React, { useState } from 'react';
 
-const GearCardStyled = styled.div`
-    color:white;
-    padding:15px;
-    margin:10px;
-    border-radius: 10px;
-    background-color:black;    
-    &.active{
-        border-color: white;
-        border-style: solid;
-    }
-`;
-
-const DiscordNameStyled = styled.div`
-    text-align:center;
-    font-size:32px;
-    padding:15px;
-    width:auto;
-`;
-
-const CharacterNameStyled = styled.label`
-
-`;
-
-const ClassStyled = styled.label`
-
-`;
-
-const BattleStyled = styled.label`
-
-`;
-
-const LevelStyled = styled.label`
-
-`;
-
-const ApStyled = styled.label`
-
-`;
-
-const ApAwakStyled = styled.label`
-
-`;
-
-const DefenseStyled = styled.label`
-
-`;
-
-const TrinaStyled = styled.label`
-
-`;
-
-const InputStyled = styled.input`
-width:100%;
-border:none;
-background-color:black;
-color:white;
-&:focus{
-    border: 3px solid #555;
-}
-`;
-
-const SelectInputStyled = styled.select`
-width:100%;
-border:none;
-background-color:black;
-color:white;
-`;
-
-const OptionComboBoxStyled = styled.option`
-
-`;
 
 export default function DialogGear(props) {
 
@@ -90,9 +31,9 @@ export default function DialogGear(props) {
     async function handleSubmit(event) {
 
         event.preventDefault();
-    
+
         const urlSubmit = "api/gear/" + props.gear.id;
-    
+
         const res = await fetch(urlSubmit, {
             body: JSON.stringify({
                 state
@@ -103,7 +44,7 @@ export default function DialogGear(props) {
             method: 'PUT'
         })
         const result = await res.json()
-    
+
         props.setGearState(result);
         props.closeModalDialog();
     }
@@ -113,75 +54,147 @@ export default function DialogGear(props) {
     }
 
     return (
-        <GearCardStyled className={props.gear.gearAtivo ? "active" : null}>
-            <form onSubmit={handleSubmit}>
-                <DiscordNameStyled>{props.gear.guildName}</DiscordNameStyled>                
-                <CharacterNameStyled>Nome personagem:
-                    <InputStyled
-                        type="text"
-                        name='characterName'
-                        value={state.characterName}
-                        onChange={handleChange}
-                    />
-                </CharacterNameStyled>
-                <ClassStyled>Classe:</ClassStyled>
-                <SelectInputStyled name="class" onChange={handleChange}>
-                    {props.classes &&
-                        props.classes.map((classes) => (
-                            <OptionComboBoxStyled value={classes} selected={classes == props.gear.classe}> {classes}</OptionComboBoxStyled>
-                        ))}
-                </SelectInputStyled>
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.800')}
+            color={useColorModeValue('black', 'white')}
+            className={props.gear.gearAtivo ? "active" : null}>
 
-                <BattleStyled>Modo de batalha:</BattleStyled>
-                <SelectInputStyled name="battleMode" onChange={handleChange}>
-                    {props.battleModes && props.battleModes.map((battle) => (
-                        <OptionComboBoxStyled value={battle} selected={battle == props.gear.battleMode}>{battle}</OptionComboBoxStyled>
-                    ))}
-                </SelectInputStyled>
+            <ModalHeader
+                textAlign="center">
+                {props.gear.guildName}
+            </ModalHeader>
+            <ModalBody>
+                
+                    <form
+                        onSubmit={handleSubmit}>
+                            <Stack spacing={4}>
+                        <FormControl>
+                            <InputGroup>
+                                <InputLeftAddon children="Nome personagem:" />
+                                <Input
+                                    type="text"
+                                    name='characterName'
+                                    value={state.characterName}
+                                    onChange={handleChange}
+                                    
+                                />
+                            </InputGroup>
+                        </FormControl>
 
-                <LevelStyled>Level:</LevelStyled>
-                <InputStyled
-                    type='number'
-                    name='level'
-                    value={state.level}
-                    onChange={handleChange}
-                />
+                        <FormControl>
+                            <InputGroup>
+                                <InputLeftAddon children="Classe:" />
+                                <Select
+                                    name="class"
+                                    onChange={handleChange}
+                                    defaultValue={props.gear.classe}>
+                                    {props.classes &&
+                                        props.classes.map((classes) => (
+                                            <option
+                                                key={classes}
+                                                value={classes}>
+                                                {classes}
+                                            </option>
+                                        ))}
+                                </Select>
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
 
-                <ApStyled>AP:</ApStyled>
-                <InputStyled
-                    type='number'
-                    name='ap'
-                    value={state.ap}
-                    onChange={handleChange}
-                />
+                            <InputGroup>
+                                <InputLeftAddon children="Modo de batalha:" />
+                                <Select name="battleMode"
+                                    onChange={handleChange}
+                                    defaultValue={props.gear.battleMode}>
+                                    {props.battleModes && props.battleModes.map((battle) => (
+                                        <option
+                                            key={battle}
+                                            value={battle}>
+                                            {battle}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
 
-                <ApAwakStyled>Ap Despertado:</ApAwakStyled>
-                <InputStyled
-                    type='number'
-                    name='apawak'
-                    value={state.apawak}
-                    onChange={handleChange}
-                />
+                            <InputGroup>
+                                <InputLeftAddon children="Level:" />
+                                <Input
+                                    type='number'
+                                    name='level'
+                                    value={state.level}
+                                    onChange={handleChange}
+                                />
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
 
-                <DefenseStyled>Defesa:</DefenseStyled>
-                <InputStyled
-                    type='number'
-                    name='dp'
-                    value={state.dp}
-                    onChange={handleChange}
-                />
-
-                <TrinaStyled>Trina:</TrinaStyled>
-                <SelectInputStyled name="trina" onChange={handleChange}>
-                    {props.trina && props.trina.map((trina) => (
-                        <OptionComboBoxStyled value={trina} selected={trina == props.gear.trina}>{trina}</OptionComboBoxStyled>
-                    ))}
-                </SelectInputStyled>
+                            <InputGroup>
+                                <InputLeftAddon children="AP:" />
+                                <Input
+                                    type='number'
+                                    name='ap'
+                                    value={state.ap}
+                                    onChange={handleChange}
+                                />
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
 
 
-                <InputStyled type='submit' value='Save' />
-            </form>
-        </GearCardStyled>
+                            <InputGroup>
+                                <InputLeftAddon children="Ap Despertado:" />
+                                <Input
+                                    type='number'
+                                    name='apawak'
+                                    value={state.apawak}
+                                    onChange={handleChange}
+                                />
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
+
+                            <InputGroup>
+                                <InputLeftAddon children="Defesa:" />
+                                <Input
+                                    type='number'
+                                    name='dp'
+                                    value={state.dp}
+                                    onChange={handleChange}
+                                />
+                            </InputGroup>
+                        </FormControl>
+                        <FormControl>
+
+                            <InputGroup>
+                                <InputLeftAddon children="Trina:" />
+                                <Select
+                                    name="trina"
+                                    onChange={handleChange}
+                                    defaultValue={props.gear.trina}>
+                                    {props.trina && props.trina.map((trina) => (
+                                        <option
+                                            key={trina}
+                                            value={trina} >
+                                            {trina}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </InputGroup>
+                        </FormControl>
+
+                        <Button
+                            width="full"                           
+                            type='submit'>
+                            Save
+                        </Button>
+                        </Stack>
+                    </form>
+                
+            </ModalBody>
+
+        </Box>
     );
 
 }

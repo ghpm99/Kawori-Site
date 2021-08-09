@@ -1,23 +1,19 @@
 import {
-    Box, chakra,
-    Flex,
-    SimpleGrid,
-    Stat,
-    StatHelpText,
-    StatLabel,
+    chakra, SimpleGrid,
+    Stat, StatLabel,
     StatNumber, useColorModeValue
 } from '@chakra-ui/react';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { BsPerson } from 'react-icons/bs';
-import { FiServer, FiCommand } from 'react-icons/fi';
+import { FiCommand, FiServer } from 'react-icons/fi';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { ContainerBox, ContainerFlex } from '../components/container';
 import Head from '../components/head';
 import Menu from '../components/menu';
-import authorization from '../security/authorization';
-import { ContainerBox, ContainerFlex } from '../components/container';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { statusUpdate } from '../src/store/actions/backend';
 
 
-function Status(props) {
+function Status(props) {    
     
     return (
         <>
@@ -30,49 +26,23 @@ function Status(props) {
 
 export default Status;
 
-export async function getServerSideProps(context) {
-    try {
-        const urlStatus = process.env.API_SPRING_URL + "/status";     
-
-        const res = await fetch(urlStatus, {
-            method: "GET",
-            headers: authorization()
-        });
-        const data = await res.json();
-
-        if (!data) {
-            return {
-                props: {
-                    data: {
-                        status: "Offline",
-                        cmdReceived: 0,
-                        guildCount: 0,
-                        userCount: 0,
-                    }
-                }
-            }
-        }
-        return {
-            props: { data }
-        }
-    } catch {
-        return {
-            props: {
-                data: {
-                    status: "Offline",
-                    cmdReceived: 0,
-                    guildCount: 0,
-                    userCount: 0,
-                }
-            }
-
-        }
-    }
-}
-
 function Page(props) {
 
-    const status = useSelector((state : RootStateOrAny) => state.status);    
+    const status = useSelector((state : RootStateOrAny) => state.status);  
+    const dispatch = useDispatch();  
+    
+    useEffect(() => {
+        
+        const urlStatus = "/api/status";     
+
+        fetch(urlStatus, {
+            method: "GET"
+        }).then((res) => {
+            res.json().then((data) => {                
+                dispatch(statusUpdate(data));
+            })
+        });
+    },[])
 
     return (
         <ContainerBox maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}  >

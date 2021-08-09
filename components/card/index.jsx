@@ -23,11 +23,19 @@ align-items: center;
 
 function Card(props) {
     return (
-        <Flex bg={useColorModeValue("gray.100","gray.800")} color={useColorModeValue("black","white")}>
-            <Image src={props.imagem} />
+        <Flex 
+        bg={useColorModeValue("gray.100", "gray.800")} 
+        color={useColorModeValue("black", "white")}                
+        alignItems="center">
+
+            <Image 
+            order={props.alinhamento}
+            src={props.imagem}             
+            />
             <Text fontSize="5xl">
                 {props.texto}
             </Text>
+
         </Flex>
     );
 }

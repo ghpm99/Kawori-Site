@@ -41,8 +41,7 @@ export default function Menu() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { language } = useSelector((state: RootStateOrAny) => state.settings);
-
+  const { language } = useSelector((state: RootStateOrAny) => state.settings);  
   const clicou = () => {
     if (language === "ptbr")
       dispatch(settingsUpdateLang("en"));
