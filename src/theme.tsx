@@ -9,17 +9,10 @@ const styles: Styles = {
   global: (props) => ({
     ...theme.styles.global,
     "body": {
-      backgroundColor: "#36393f"
+      color: mode("gray.800", "whiteAlpha.900")(props),
+      bg: mode("gray.800", "whiteAlpha.900")(props),
+      lineHeight: "base"
     },
-    width: "100%",
-    backgroundSize: "100%",
-    backgroundColor: "#36393f",
-    border: "0px solid #000",
-    margin: "0px",
-    fontFamily: "body",
-    fontWeight: "light",
-    color: mode("gray.100", "whiteAlpha.900")(props),
-    bg: mode("gray.700", "#36393f")(props),
   }),
 };
 
