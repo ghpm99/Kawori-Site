@@ -9,10 +9,8 @@ function Head({title}){
         <NextHead>            
             <title>
                 {title}
-            </title>
-            
-        </NextHead>
-        
+            </title>            
+        </NextHead>        
         </>
     )
 }

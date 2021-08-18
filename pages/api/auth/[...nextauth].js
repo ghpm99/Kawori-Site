@@ -30,10 +30,9 @@ export default NextAuth({
       return false;
 
     },
-    session: async (session, user) => {      
-      
+    session: async (session, user) => {
       session.user.id = user.sub;
-      session.user.role = await getUserRole(user.sub);
+      session.user = { ...session.user, ...await getUser(user.sub) };      
       return Promise.resolve(session);
     }
   },
@@ -73,15 +72,16 @@ function onSignOut(idUser) {
 
 }
 
-async function getUserRole(idUser) {
-  const urlRole = process.env.API_SPRING_URL + "/user/role?id=" + idUser;
+async function getUser(idUser) {
 
-  const res = await fetch(urlRole, {
+  const urlUser = process.env.API_SPRING_URL + "/user/" + idUser;
+
+  const res = await fetch(urlUser, {
     method: "GET",
     headers: authorization()
   });
 
   const data = await res.json();
 
-  return data.role;
+  return data;
 }

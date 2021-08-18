@@ -7,18 +7,10 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { ContainerBox } from '../components/container';
+import { Grid, GridItem } from '@chakra-ui/layout';
+import { Table, Tbody, Td, Th, Thead,Tr } from '@chakra-ui/table';
 
-
-const PanelStyled = styled.div`
-display:grid;
-grid-template-areas:    
-    'menu main main main main';
-grid-gap: 10px;
-`;
-
-const PanelNavStyled = styled.nav`
-grid-area: menu;
-`;
 
 const PanelMenuStyled = styled.ul`
 list-style-type: none;
@@ -45,10 +37,6 @@ li:last-child {
 }
 `;
 
-const InternalPanelStyled = styled.div`
-grid-area: main;
-
-`;
 
 const SearchContainerStyled = styled.div`
 padding: 10px 2px 10px;
@@ -167,12 +155,12 @@ export async function getServerSideProps(context) {
 function admin(props) {
 
     return (
-        <div>
+        <ContainerBox>
             <Head title='Kawori bot' />
             <Menu ativo={0} />
             <InternalMenu ativo={3} />
             <Panel menu={props.menu} />
-        </div>
+        </ContainerBox>
     )
 
 }
@@ -184,16 +172,17 @@ function Panel(props) {
     const [component, setComponent] = useState(props.menu[0].params);
 
     return (
-        <PanelStyled>
+        <Grid
+            templateAreas={{ md: `'menu main main main main'` }}>
             <PanelNav menu={props.menu} onClick={(url) => { setComponent(url) }} component={component} />
             <InternalPanel component={component} />
-        </PanelStyled>
+        </Grid>
     )
 }
 
 function PanelNav(props) {
     return (
-        <PanelNavStyled>
+        <GridItem gridArea="menu">
             <PanelMenuStyled>
                 {props.menu && props.menu.map((menu) => (
                     <li key={menu.params.id}>
@@ -203,16 +192,16 @@ function PanelNav(props) {
                     </li>
                 ))}
             </PanelMenuStyled>
-        </PanelNavStyled>
+        </GridItem>
     )
 }
 
 function InternalPanel(props) {
 
     return (
-        <InternalPanelStyled>
+        <GridItem gridArea="main">
             <TablePanel component={props.component} />
-        </InternalPanelStyled>
+        </GridItem>
     )
 }
 
@@ -338,7 +327,7 @@ function TableContent(props) {
     const getHeader = () => {
         var keys = getKeys();
         return keys.map((key, index) => {
-            return <th key={key}>{key.toUpperCase()}</th>
+            return <Th key={key}>{key.toUpperCase()}</Th>
         })
     }
 
@@ -346,7 +335,7 @@ function TableContent(props) {
         var items = props.data.content;
         var keys = getKeys();
         return items.map((row, index) => {
-            return <tr key={row.id}><RenderRow key={index} data={row} keys={keys} /></tr>
+            return <Tr key={row.id}><RenderRow key={index} data={row} keys={keys} /></Tr>
         })
     }
 
@@ -354,24 +343,24 @@ function TableContent(props) {
     const RenderRow = (props) => {
         return props.keys.map((key, index) => {
             if (props.data[key] === null) {
-                return <td key={props.data.id + index}>Null</td>
+                return <Td key={props.data.id + index}>Null</Td>
             } else
-                return <td key={props.data.id + index}>{props.data[key].toString()}</td>
+                return <Td key={props.data.id + index}>{props.data[key].toString()}</Td>
         })
     }
 
 
     return (
-        <TableContentStyled>
-            <thead>
-                <tr>
+        <Table variant="striped">
+            <Thead>
+                <Tr>
                     {getHeader()}
-                </tr>
-            </thead>
-            <tbody>
+                </Tr>
+            </Thead>
+            <Tbody>
                 {getRowsData()}
-            </tbody>
-        </TableContentStyled>
+            </Tbody>
+        </Table>
     )
 
 }

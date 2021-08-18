@@ -1,86 +1,22 @@
+import {
+    Center, Heading, Image,
+    Progress, Stack, Text, Button, Box
+} from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/spinner';
+import { getSession, signOut, useSession } from 'next-auth/client';
+import { ContainerBox } from "../components/container";
 import Head from '../components/head';
-import Menu from '../components/menu';
-import styled from 'styled-components';
 import InternalMenu from '../components/internalMenu';
-import { getSession, useSession, signOut } from 'next-auth/client';
-import authorization from '../security/authorization';
-
-const Profile = styled.div`
-background-color:#2f3237;
-display:flex;
-flex-wrap:wrap;
-align-items: center;
-padding:15px;
-border-radius: 10px
-`;
-
-const Image = styled.img`    
-margin-left:auto;
-`;
-
-const Name = styled.div`
-color: white;
-`;
-
-const ExperienceDiv = styled.div`
-color: white;
-flex-grow: 1;
-flex-basis: auto;
-text-align: center;
-justify-content: center;
-align-items: center;
-`;
-
-const Information = styled.div`
-color:white;
-
-text-align: lefth;
-justify-content: center;
-align-items: center;
-`;
-
-
-
-const ProfileAvatarAndName = styled.div`
-flex-grow: 0;
-flex-basis: auto;
-`;
-
-const LevelStyled = styled.div`
-
-`;
-
-const ProgressLevelStyled = styled.progress`
-
-`;
-
-const CmdStyled = styled.div`
-
-`;
-
-const MessageCountStyled = styled.div`
-
-`;
-
-const BannedStyled = styled.div`
-
-`;
-
-const RegionStyled = styled.div`
-
-`;
-
-const SignOutButtonStyled = styled.button`
-`;
+import Menu from '../components/menu';
 
 function Account(props) {
     return (
-        <div>
+        <ContainerBox>
             <Head title='Kawori bot' />
-            <Menu ativo={0} />
-            <InternalMenu ativo={0}/>
-            <Page props={props} />
-        </div>
+            <Menu />
+            <InternalMenu />
+            <Page />
+        </ContainerBox>
     )
 }
 
@@ -88,7 +24,7 @@ export default Account;
 
 export async function getServerSideProps(context) {
     const session = await getSession(context);
-    
+
     if (!session) {
         return {
             redirect: {
@@ -98,101 +34,141 @@ export async function getServerSideProps(context) {
             props: {},
         };
     }
-
-
-    const urlStatus = process.env.API_SPRING_URL + "/user/" + session.user.id;
-    
-    try {
-        
-        const res = await fetch(urlStatus, {
-            method: "GET",
-            headers: authorization()
-        });
-
-        const data = await res.json();
-
-
-        return {
-            props: { data }
-        }
-    } catch {
-        return {
-            props: {
-                data: {
-                    name: session.user.name,
-                    discriminator: "",
-                    level: 0,
-                    exp: 0,
-                    expRequired: 0,
-                    msgCount: 0,
-                    cmdCount: 0,
-                    banned: false,
-                    email: "",
-                    region: ""
-                }
-
-            }
-        }
+    return {
+        props: {},
     }
 
 }
 
 function Page(props) {
-    return (
-        <>
-            <Profile>
-                <ProfileAvatarAndName>
-                    <ProfileImage />
-                    <ProfileName name={props.props.data.name} discriminator={props.props.data.discriminator} />
-                </ProfileAvatarAndName>
-                <ProfileExperience level={props.props.data.level} exp={props.props.data.exp}
-                    expRequired={props.props.data.expRequired} msgCount={props.props.data.msgCount} cmdCount={props.props.data.cmdCount} />
-            </Profile>
-            <ProfileInformation banned={props.props.data.banned} email={props.props.data.email} region={props.props.data.region} />
-        </>
-    )
+    const [session] = useSession();
+
+    if (session) {
+        return (
+            <>
+                <ProfileSimple user={session.user} />
+            </>
+        )
+    }
+
+    return (<Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl" />)
 }
 
-function ProfileImage() {
-    const [session] = useSession();    
+function ProfileSimple(props) {
     return (
-        <>
-            {session && <Image src={session.user.image} />}
-        </>
-    )
+        <Center py={12}>
+            <ContainerBox
+                role={'group'}
+                p={6}
+                maxW={'330px'}
+                w={'full'}
+
+                boxShadow={'2xl'}
+                rounded={'lg'}
+                pos={'relative'}
+                zIndex={1}>
+                <ContainerBox
+                    rounded={'lg'}
+                    mt={-12}
+                    pos={'relative'}
+                    height={'230px'}
+                    _after={{
+                        transition: 'all .3s ease',
+                        content: '""',
+                        w: 'full',
+                        h: 'full',
+                        pos: 'absolute',
+                        top: 5,
+                        left: 0,
+                        backgroundImage: `url(${props.user.image})`,
+                        filter: 'blur(15px)',
+                        zIndex: -1,
+                    }}
+                    _groupHover={{
+                        _after: {
+                            filter: 'blur(20px)',
+                        },
+                    }}>
+                    <Image
+                        rounded={'lg'}
+                        height={230}
+                        width={282}
+                        objectFit={'cover'}
+                        src={props.user.image}
+                    />
+                </ContainerBox>
+                <Stack pt={10} align={'center'}>
+
+                    <ProfileName
+                        name={props.user.name}
+                        discriminator={props.user.discriminator}
+                    />
+
+                    <Box fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+                        <ProfileExperience
+                            level={props.user.level}
+                            exp={props.user.exp}
+                            expRequired={props.user.expRequired}
+                            msgCount={props.user.msgCount}
+                            cmdCount={props.user.cmdCount}
+                        />
+                    </Box>
+                    <Stack
+                        direction={'row'}
+                        align={'center'}>
+
+                        <Box
+                            fontWeight={800}
+                            fontSize={'xl'}>
+                            <Profilediv
+                                banned={props.user.banned}
+                                region={props.user.region}
+                            />
+                        </Box>
+
+                    </Stack>
+                </Stack>
+            </ContainerBox>
+        </Center>
+    );
 }
 
 function ProfileName(props) {
     return (
-        <Name>
-            <a>{props.name}#{props.discriminator}</a>
-        </Name>
+        <Text color={'gray.500'} fontSize={'sm'} >
+            {props.name}#{props.discriminator}
+        </Text>
     )
 }
 
 function ProfileExperience(props) {
     return (
-        <ExperienceDiv>
-            <LevelStyled>Level:{props.level} Exp: {props.exp}/{props.expRequired}</LevelStyled>
-            <ProgressLevelStyled value={props.exp} max={props.expRequired} />
-            <MessageCountStyled>Mensagens:{props.msgCount}</MessageCountStyled>
-            <CmdStyled>Comandos:{props.cmdCount}</CmdStyled>
-        </ExperienceDiv>
+        <div>
+            <div>Level:{props.level} Exp: {props.exp}/{props.expRequired}</div>
+            <Progress value={props.exp} max={props.expRequired} />
+            <div>Mensagens:{props.msgCount}</div>
+            <div>Comandos:{props.cmdCount}</div>
+        </div>
     )
 }
 
-function ProfileInformation(props) {
+function Profilediv(props) {
     return (
-        <Information>
-            <BannedStyled>Banido:{props.banned ? <a>Sim</a> : <a>Não</a>}</BannedStyled>
-            <RegionStyled>Regiao:{props.region}</RegionStyled>
+        <div>
+            <div>Banido:{props.banned ? <a>Sim</a> : <a>Não</a>}</div>
+            <div>Regiao:{props.region}</div>
             <SignOutButton />
-        </Information>
+        </div>
     )
 }
 
 function SignOutButton() {
     return (
-        <SignOutButtonStyled onClick={() => signOut()}>Deslogar</SignOutButtonStyled>
+        <Button onClick={() => signOut()}>Deslogar</Button>
     )
 }

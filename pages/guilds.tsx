@@ -1,10 +1,14 @@
-import Head from '../components/head';
-import Menu from '../components/menu';
+import { Spinner } from '@chakra-ui/spinner';
+import { format, parseISO } from "date-fns";
+import { getSession, useSession } from 'next-auth/client';
+import { useEffect } from 'react';
+import { useSelector, RootStateOrAny, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { ContainerBox } from '../components/container';
+import Head from '../components/head';
 import InternalMenu from '../components/internalMenu';
-import { getSession } from 'next-auth/client';
-import { parseISO, format } from "date-fns";
-import authorization from '../security/authorization';
+import Menu from '../components/menu';
+import { guildsUpdate } from '../src/store/actions/guild';
 
 const Container = styled.div`
 color:white;
@@ -84,20 +88,34 @@ const CmdStyled = styled.div`
 
 function Guilds(props) {
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        fetch("/api/guilds", {
+            method: "GET"
+        }).then((res) => {
+            res.json().then((data) => {
+                dispatch(guildsUpdate(data));
+            });
+        })
+    }, [])
+
     return (
-        <div>
+        <ContainerBox>
             <Head title='Kawori bot' />
-            <Menu ativo={0} />
-            <InternalMenu ativo={1}/>
+            <Menu />
+            <InternalMenu ativo={1} />
             <Page props={props} />
-        </div>
+        </ContainerBox>
     )
 }
 
 export default Guilds;
 
 export async function getServerSideProps(context) {
+
     const session = await getSession(context);
+
     if (!session) {
         return {
             redirect: {
@@ -107,37 +125,22 @@ export async function getServerSideProps(context) {
             props: {},
         };
     }
-    try {
-        const urlStatus = process.env.API_SPRING_URL + "/guilds/" + session.user.id;
-
-        const res = await fetch(urlStatus, {
-            method: "GET",
-            headers: authorization()
-        });
-        const data = await res.json();
-        return {
-            props: { data }
-        }
-    } catch {
-        return {
-            props: {
-                data: {
-
-                }
-            }
-        }
-    }
+    return { props: {} }
 
 }
 
 function Page(props) {
+
+    const { guilds } = useSelector((state: RootStateOrAny) => state);
+
     return (
         <Container>
-            {props.props.data.membros && props.props.data.membros.map((membro) => (
+            {guilds.membros && guilds.membros.map((membro) => (
                 <MembroCard membro={membro} />
             ))}
         </Container>
     )
+
 }
 
 function MembroCard(props) {

@@ -1,87 +1,11 @@
-import Head from '../components/head';
-import Menu from '../components/menu';
+import { CheckIcon } from '@chakra-ui/icons';
+import { Box, Button, Center, Heading, List, ListIcon, ListItem, Stack, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue, Link as ChakraLink } from '@chakra-ui/react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Card from '../components/card';
-import Link from 'next/link';
+import Head from '../components/head';
+import Menu from '../components/menu';
 
-const Title = styled.h1`
-text-align:center;
-color:white;
-font-size:52px;
-`;
-
-const Cards = styled.div`
-display: -webkit-flex;
-display: flex;
--webkit-align-items: center;
-align-items: center;
--webkit-justify-content: center;
-justify-content: center;
-text-align:center;
-flex-direction:column;
-`;
-
-const RequirementTable = styled.table`
-color:white;
-text-align:center;
-margin-left: auto;
-margin-right: auto;
-`;
-
-const FirstRow = styled.tr`
-font-style:italic;
-font-size:20px;
-`;
-
-const Cell = styled.th`
-padding:10px 50px;
-`;
-
-const Row = styled.tr`
-border: 1px solid black;
-`;
-
-const Text = styled.ul`
-color:white;
-font-size:22px;
-text-align:justify;
-`;
-
-const Point = styled.i`
-color: #FA8072;
-`;
-
-const HowToUseTable = styled.table`
-`;
-
-const HowToUseRow = styled.tr`
-`;
-
-const DownloadButton = styled.a`
-background-color:#4CAF50;
-cursor: pointer;
-text-align: center;
-border:none;
-padding:15px 32px;
-text-decoration:none;
-font-size:24px;
-border-radius:4px;
-transition-duration:0.4s;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-width:50%;
-&:hover{
-    background-color:white;
-    color:#36393f;
-}
-`;
-
-const DownloadDiv = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-margin-top:25px;
-margin-bottom:50px;
-`;
 
 const InternalMenuDiv = styled.div`
 display: -webkit-flex;
@@ -111,13 +35,12 @@ font-size: 40px;
  }
 `;
 
-const version = "Versão 0.01B";
 
-function Main(){    
-    return(
+function Main() {
+    return (
         <>
-            <Head title='Kawori bot' /> 
-            <Menu  ativo={3}/>
+            <Head title='Kawori bot' />
+            <Menu ativo={3} />
             <InternalMenu />
             <Intro />
             <HowToUse />
@@ -130,128 +53,228 @@ function Main(){
 
 export default Main;
 
-function Intro(){
-    return(
-        <Cards>
-            <Card imagem='https://i.imgur.com/Eh5BL10.png' 
-            texto='Face Texture Editor é um programa simples que auxilia a alterar as Face Texture dos personagens do Black Desert Online, criando assim um visual belo' alinhamento='1'/>
-            <Card imagem='https://i.imgur.com/0GUMUML.png' 
-            texto='De forma facil e simples personalize a seleção de personagem de seu jogo!' alinhamento='0'/>
-            <Card imagem='https://i.imgur.com/fYJxH1X.png' 
-            texto='Utilize qualquer imagem para uma personalização completa!' alinhamento='1'/>
-            <Card imagem='https://i.imgur.com/Ps0tyoy.png' 
-            texto='Surpreenda seus amigos com sua seleção de personagem!' alinhamento='0'/>
-        </Cards>
+function Intro() {
+    return (
+        <Box>
+            <Card imagem='/Eh5BL10.png'
+                texto='Face Texture Editor é um programa simples que auxilia a alterar as Face Texture dos personagens do Black Desert Online, criando assim um visual belo' alinhamento='1' />
+            <Card imagem='/0GUMUML.png'
+                texto='De forma facil e simples personalize a seleção de personagem de seu jogo!' alinhamento='0' />
+            <Card imagem='/fYJxH1X.png'
+                texto='Utilize qualquer imagem para uma personalização completa!' alinhamento='1' />
+            <Card imagem='/Ps0tyoy.png'
+                texto='Surpreenda seus amigos com sua seleção de personagem!' alinhamento='0' />
+        </Box>
     )
 }
 
-function HowToUse(){
-    return(
-        <div id="HowToUse">
-            <Title>Como Usar</Title>
-            <HowToUseTable>
-                <HowToUseRow>
-                    <Text>Configurando as Face Texture</Text>
-                </HowToUseRow>
+function HowToUse() {
+    return (
+        <Box bg={useColorModeValue('gray.100', 'gray.800')} color={useColorModeValue('black', 'white')} id="HowToUse">
+            <Heading as="h1" size="4xl">Como Usar</Heading>
+            <Table>
+                
+                <Tr>
+                    <ListItem>"Configurando as Face Texture"</ListItem>
+                </Tr>
 
-                <HowToUseRow>
-                    <Text>Em <Point>Edit/Face Textures</Point> configure a ordem dos personagens.<br/>
-                    Para realizar a configuração utilize os dois clicks do mouse sobre a posição que deseja alterar.
-                    Na tela de seleção de arquivo é necessario selecionar a imagem padrao do personagem.<br/>
-                    No canto esquerdo selecione a classe e se deseja mostrar o icone da classe ao exportar.<br/>
-                    Repita o processo ate que a tela no programa esteja igual a tela de seleção de personagem do seu jogo.<br/>
-                    Feche a tela interna do programa no <Point>"X"</Point>(Atenção para encerrar somente a tela interna dentro do programa e não o programa).
-                    </Text>
-                </HowToUseRow>
+                <Tr>
+                    <ListItem>Em Edit/Face Textures configure a ordem dos personagens.<br />
+                        Para realizar a configuração utilize os dois clicks do mouse sobre a posição que deseja alterar.
+                        Na tela de seleção de arquivo é necessario selecionar a imagem padrao do personagem.<br />
+                        No canto esquerdo selecione a classe e se deseja mostrar o icone da classe ao exportar.<br />
+                        Repita o processo ate que a tela no programa esteja igual a tela de seleção de personagem do seu jogo.<br />
+                        Feche a tela interna do programa no "X"(Atenção para encerrar somente a tela interna dentro do programa e não o programa).
+                    </ListItem>
+                </Tr>
 
-                <HowToUseRow>
-                    <Text>Configurando o background</Text>
-                </HowToUseRow>
+                <Tr>
+                    <ListItem>Configurando o background</ListItem>
+                </Tr>
 
-                <HowToUseRow>
-                    <Text>
-                        Em <Point>Edit/Background</Point> selecione a imagem que deseje colocar de fundo.<br/>
-                        Utilize o botão <Point>Alterar Imagem</Point> para buscar e selecionar a imagem.<br/>
-                        Clicando e arrastando é possivel reposicionar a imagem.<br/>
-                        Utilizando o scroll do mouse é possivel aumentar o zoom ou diminuir o zoom.<br/>
-                        Apos realizar os ajustes necessarios fecha a tela interna do programa no <Point>"X"</Point>(Atenção para encerrar somente a tela interna dentro do programa e não o programa).
-                    </Text>
-                </HowToUseRow>
+                <Tr>
+                    <ListItem>
+                        Em Edit/Background selecione a imagem que deseje colocar de fundo.<br />
+                        Utilize o botão Alterar Imagem para buscar e selecionar a imagem.<br />
+                        Clicando e arrastando é possivel reposicionar a imagem.<br />
+                        Utilizando o scroll do mouse é possivel aumentar o zoom ou diminuir o zoom.<br />
+                        Apos realizar os ajustes necessarios fecha a tela interna do programa no "X"(Atenção para encerrar somente a tela interna dentro do programa e não o programa).
+                    </ListItem>
+                </Tr>
 
-                <HowToUseRow>
-                    <Text>
+                <Tr>
+                    <ListItem>
                         Exportando imagens
-                    </Text>
-                </HowToUseRow>
+                    </ListItem>
+                </Tr>
 
-                <HowToUseRow>
-                    <Text>
-                        <Point>É recomendado criar um backup da pasta FaceTexture!<br/></Point>
-                        Crie uma pasta para salvar as FaceTexture novas.<br/>
-                        Apos realizar as configurações necessarias vá ate <Point>Edit/Exportar</Point><br/>
-                        Verifique o preview e se está tudo conforme configurado.<br/>
-                        Caso deseje só alterar a imagem de um personagem utilize o botão <Point>Exportar</Point><br/>
-                        Caso deseje alterar para a imagem de fundo selecionada marque a caixa <Point>Background</Point> localizada no canto esquerdo.<br/>
-                        Verifique o resultado e utilize o botão <Point>Exportar</Point> para continuar o processo.<br/>
-                        Localize e selecione a pasta que deseje salvar as FaceTexture novas e confirme.<br/>
-                        Copie o conteudo exportado na pasta criada e cole na pasta <Point>Documentos/Black Desert/FaceTexture</Point><br/>
+                <Tr>
+                    <ListItem>
+                        É recomendado criar um backup da pasta FaceTexture!<br />
+                        Crie uma pasta para salvar as FaceTexture novas.<br />
+                        Apos realizar as configurações necessarias vá ate Edit/Exportar<br />
+                        Verifique o preview e se está tudo conforme configurado.<br />
+                        Caso deseje só alterar a imagem de um personagem utilize o botão Exportar<br />
+                        Caso deseje alterar para a imagem de fundo selecionada marque a caixa Background localizada no canto esquerdo.<br />
+                        Verifique o resultado e utilize o botão Exportar para continuar o processo.<br />
+                        Localize e selecione a pasta que deseje salvar as FaceTexture novas e confirme.<br />
+                        Copie o conteudo exportado na pasta criada e cole na pasta Documentos/Black Desert/FaceTexture<br />
                         Verifique no jogo o resultado!
+                    </ListItem>
+                </Tr>
+
+            </Table>
+        </Box>
+    )
+}
+
+function Requirement() {
+    return (
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.800')}
+            color={useColorModeValue('black', 'white')}
+            id="Requirement">
+            <Heading
+                as="h1"
+                size="4xl">
+                Requisitos Mínimos
+            </Heading >
+            <Table>
+                <Thead>
+                    <Tr>
+                        <Th>Categoria</Th>
+                        <Th>Mínimo</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    <Tr>
+                        <Td>Sistema</Td>
+                        <Td>Java Version 8 Update 271</Td>
+                    </Tr>
+                    <Tr>
+                        <Td>Disco</Td>
+                        <Td>30 MB</Td>
+                    </Tr>
+                    <Tr>
+                        <Td>Memória</Td>
+                        <Td>1 GB RAM</Td>
+                    </Tr>
+                </Tbody>
+            </Table>
+        </Box>
+    )
+}
+
+function Download() {
+
+    //link : https://drive.google.com/uc?export=download&id=1G2oMSGAY6pJaWslXcQ_s0QrUEqU55ZVg
+
+
+    return (
+        <Center py={6} bg={useColorModeValue('gray.100', 'gray.800')} color={useColorModeValue('black', 'white')} id="Download">
+            <Box
+                maxW={'330px'}
+                w={'full'}
+                bg={useColorModeValue('white', 'gray.800')}
+                boxShadow={'2xl'}
+                rounded={'md'}
+                overflow={'hidden'}>
+                <Stack
+                    textAlign={'center'}
+                    p={6}
+                    color={useColorModeValue('gray.800', 'white')}
+                    align={'center'}>
+                    <Text
+                        fontSize={'sm'}
+                        fontWeight={500}
+                        bg={useColorModeValue('green.50', 'green.900')}
+                        p={2}
+                        px={3}
+                        color={'green.500'}
+                        rounded={'full'}>
+                        Full
                     </Text>
-                </HowToUseRow>
+                    <Stack direction={'row'} align={'center'} justify={'center'}>
+                        <Text fontSize={'6xl'} fontWeight={800}>
+                            Free
+                        </Text>
+                    </Stack>
+                </Stack>
 
-            </HowToUseTable>
-        </div>
-    )
+                <Box bg={useColorModeValue('gray.50', 'gray.900')} px={6} py={10}>
+                    <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={CheckIcon} color="green.400" />
+                            Suporte a 23 classes
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={CheckIcon} color="green.400" />
+                            Background customizavel
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={CheckIcon} color="green.400" />
+                            Background individual por personagem
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={CheckIcon} color="green.400" />
+                            Todas funcionalidades
+                        </ListItem>
+                    </List>
+                    <Link href="https://drive.google.com/uc?export=download&id=1G2oMSGAY6pJaWslXcQ_s0QrUEqU55ZVg">
+                        <Button
+                            mt={10}
+                            w={'full'}
+                            bg={'green.400'}
+                            color={'white'}
+                            rounded={'xl'}
+                            boxShadow={'0 5px 20px 0px rgb(72 187 120 / 43%)'}
+                            _hover={{
+                                bg: 'green.500',
+                            }}
+                            _focus={{
+                                bg: 'green.500',
+                            }}>
+                            Download
+                        </Button>
+                    </Link>
+                </Box>
+            </Box>
+        </Center>
+    );
 }
 
-function Requirement(){
-    return(
-        <div id="Requirement">
-            <Title>Requisitos Mínimos</Title>
-            <RequirementTable>
-                <FirstRow>
-                    <Cell>Categoria</Cell>
-                    <Cell>Mínimo</Cell>
-                </FirstRow>
-                <Row>
-                    <Cell>Sistema</Cell>
-                    <Cell>Java Version 8 Update 271</Cell>
-                </Row>
-                <Row>
-                    <Cell>Disco</Cell>
-                    <Cell>30 MB</Cell>
-                </Row>
-                <Row>
-                    <Cell>Memória</Cell>
-                    <Cell>1 GB RAM</Cell>
-                </Row>
-            </RequirementTable>
-        </div>
-    )
-}
-
-function Download(){
-    return(
-        <DownloadDiv id="Download">
-            <DownloadButton type="button" href="https://drive.google.com/uc?export=download&id=1G2oMSGAY6pJaWslXcQ_s0QrUEqU55ZVg">Download {version}</DownloadButton>
-        </DownloadDiv>
-    )
-}
 
 
-
-function InternalMenu(){
-    return(
-        <InternalMenuDiv>            
+function InternalMenu() {
+    return (
+        <Box bg={useColorModeValue('gray.100', 'gray.800')} color={useColorModeValue('black', 'white')}>
             <Link href="#HowToUse" >
-                <a>Como usar</a>
+                <ChakraLink px={2}
+                    py={1}
+                    rounded={'md'}
+                    _hover={{
+                        textDecoration: 'none',
+                        bg: useColorModeValue('gray.100', 'gray.900'),
+                    }}>Como usar</ChakraLink>
             </Link>
             <Link href="#Requirement" >
-                <a>Requisitos</a>
+                <ChakraLink px={2}
+                    py={1}
+                    rounded={'md'}
+                    _hover={{
+                        textDecoration: 'none',
+                        bg: useColorModeValue('gray.100', 'gray.900'),
+                    }}>Requisitos</ChakraLink>
             </Link>
             <Link href="#Download" >
-                <a>Download</a>
+                <ChakraLink px={2}
+                    py={1}
+                    rounded={'md'}
+                    _hover={{
+                        textDecoration: 'none',
+                        bg: useColorModeValue('gray.100', 'gray.900'),
+                    }}>Download</ChakraLink>
             </Link>
-        </InternalMenuDiv>
+        </Box >
     )
 }

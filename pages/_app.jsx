@@ -1,40 +1,24 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { Provider } from 'next-auth/client'
-import { ModalProvider } from 'styled-react-modal'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
+import { Provider } from 'next-auth/client';
+import { storeWrapper } from "../src/store";
+import theme from '../src/theme';
 
-const GlobalStyle = createGlobalStyle`
-    body{
-        border: 0px solid #000;        
-        background-color: #36393f;
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-attachment: fixed;
-        background-size:100%;
-        width:100%;
-        margin:0px;
-    }
-        html {
-            scroll-behavior: smooth;
-    }
-`
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
-
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <>
       <Provider session={pageProps.session}>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <ModalProvider>
+        <ChakraProvider resetCSS theme={theme}>
+          <ColorModeProvider
+            options={{
+              useSystemColorMode: true,
+            }}
+          >
             <Component {...pageProps} />
-          </ModalProvider>
-        </ThemeProvider>
+          </ColorModeProvider>
+        </ChakraProvider>
       </Provider>
     </>
   )
 }
+
+export default storeWrapper.withRedux(App);
