@@ -5,13 +5,17 @@ import { mode, Styles } from '@chakra-ui/theme-tools';
 
 const styles: Styles = {
   ...theme.styles,
+
   global: (props) => ({
     ...theme.styles.global,
-    width:"100%",
-    backgroundSize:"100%",
-    backgroundColor:"#36393f",
-    border:"0px solid #000",
-    margin:"0px",
+    "body": {
+      backgroundColor: "#36393f"
+    },
+    width: "100%",
+    backgroundSize: "100%",
+    backgroundColor: "#36393f",
+    border: "0px solid #000",
+    margin: "0px",
     fontFamily: "body",
     fontWeight: "light",
     color: mode("gray.100", "whiteAlpha.900")(props),

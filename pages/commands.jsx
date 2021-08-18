@@ -1,8 +1,9 @@
-import { Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { Table, TableCaption, Tbody, Td, Th, Thead, Tr ,Box} from '@chakra-ui/react';
 import Head from '../components/head';
 import Menu from '../components/menu';
 import useTranslation from '../intl/useTranslation';
 import requestAuthorization from '../security/authorization';
+import {ContainerBox} from '../components/container/index';
 
 
 export async function getStaticProps(context){
@@ -22,11 +23,11 @@ export async function getStaticProps(context){
 function Commands(props) {
     
     return (
-        <div>
+        <ContainerBox>
             <Head title='Kawori bot' />
             <Menu/>
             <Page commands={props.data.commands}/>
-        </div>
+        </ContainerBox>
     )
 }
 

@@ -73,6 +73,7 @@ function HowToUse() {
         <Box bg={useColorModeValue('gray.100', 'gray.800')} color={useColorModeValue('black', 'white')} id="HowToUse">
             <Heading as="h1" size="4xl">Como Usar</Heading>
             <Table>
+                
                 <Tr>
                     <ListItem>"Configurando as Face Texture"</ListItem>
                 </Tr>
@@ -129,8 +130,15 @@ function HowToUse() {
 
 function Requirement() {
     return (
-        <Box bg={useColorModeValue('gray.100', 'gray.800')} color={useColorModeValue('black', 'white')} id="Requirement">
-            <Heading as="h1" size="4xl">Requisitos Mínimos</Heading >
+        <Box
+            bg={useColorModeValue('gray.100', 'gray.800')}
+            color={useColorModeValue('black', 'white')}
+            id="Requirement">
+            <Heading
+                as="h1"
+                size="4xl">
+                Requisitos Mínimos
+            </Heading >
             <Table>
                 <Thead>
                     <Tr>
